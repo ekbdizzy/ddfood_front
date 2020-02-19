@@ -1,0 +1,43 @@
+%wrp {
+  max-width: 1200px;
+  margin: 0 auto;
+  height: 100%;
+  padding: 0.5em;
+}
+
+%base-text {
+  font-family: Reg, sans-serif;
+  font-size: 0.85em;
+}
+
+
+%title {
+  font-family: Bold, sans-serif;
+  text-align: left;
+  color: black;
+
+  &-center {
+    @extend %title;
+    text-align: center;
+  }
+
+  &-white {
+    @extend %title;
+    color: white;
+  }
+}
+
+
+%button {
+  font-family: Reg, sans-serif;
+  font-size: 0.85em;
+  width: fit-content;
+  padding: 0.5em 1.2em !important;
+  border-radius: 1.5em;
+  opacity: .9;
+
+  &:hover {
+    opacity: 1;
+    cursor: pointer;
+  }
+}

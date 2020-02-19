@@ -1,0 +1,10 @@
+@import "../../assets/scss/utils";
+
+body {
+  @extend %base-text;
+  background-color: $base-color;
+}
+
+.wrapper {
+  @extend %wrp;
+}
