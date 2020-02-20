@@ -1,8 +1,9 @@
 import React, { Component } from "react";
+
 import { cartItems } from "../../services/mock-data";
+
 import CartItem from "../cart-item";
-import reducer from "../../reducers";
-import { compose } from "redux";
+import { connect } from "redux";
 
 class CartItemsList extends Component {
 

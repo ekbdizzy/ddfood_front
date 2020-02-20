@@ -1,15 +1,15 @@
 import React, { Component } from "react";
-import './item.scss';
+import './product.scss';
 
-class Item extends Component {
+class Product extends Component {
 
     render() {
         const {product: {id, name, price}, addToCart} = this.props;
         return (
             <div key={id}
-                 className='item'>
-                <div className='title'>{name}</div>
-                <div className='title'>{`Цена: ${price} руб.`}</div>
+                 className='product'>
+                <div className='product__title'>{name}</div>
+                <div className='product__price'>{`Цена: ${price} руб.`}</div>
                 <button
                     onClick={(id) => addToCart(id)}
                     className='add-to-cart-btn'>Добавить в корзину
@@ -19,4 +19,4 @@ class Item extends Component {
     }
 }
 
-export default Item;
+export default Product;

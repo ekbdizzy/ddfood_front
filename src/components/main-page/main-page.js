@@ -1,10 +1,9 @@
 import React from "react";
 import './main-page.scss';
 
-import CategoriesList from "../categories-list";
-import ItemList from "../items-list";
 import Cart from "../cart";
 import CategoriesContainer from "../../containers/categories-list-container";
+import ProductsListContainer from "../../containers/products-list-container";
 
 const MainPage = () => {
     return (
@@ -15,8 +14,9 @@ const MainPage = () => {
                 </div>
 
                 <div className='main'>
-                    <ItemList/>
+                    <ProductsListContainer/>
                 </div>
+
 
                 <div className='right-sidebar'>
                     <Cart/>

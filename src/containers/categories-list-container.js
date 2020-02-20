@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import Spinner from "../components/spinner";
-import ErrorIndicator from "../components/error-indicator";
 import CategoriesList from "../components/categories-list";
 import MockService from "../services/mock-data-service";
 import { connect } from "react-redux";
@@ -14,7 +12,6 @@ import { bindActionCreators } from "redux";
 
 class CategoriesContainer extends Component {
 
-
     componentDidMount() {
         const mockService = new MockService();
         const {
@@ -23,33 +20,21 @@ class CategoriesContainer extends Component {
         } = this.props;
         request_categories();
         mockService.getCategories()
-            .then((data) => {
-                load_categories(data)
+            .then((categories) => {
+                load_categories(categories)
             })
     }
 
     render() {
-        const {loading, error} = this.props;
-        console.log(this.props);
-
-        if (loading) {
-            return <Spinner/>;
-        }
-
-        if (error) {
-            return <ErrorIndicator/>;
-        }
         return (
             <CategoriesList/>
         )
     }
 }
 
-const mapStateToProps = ({categories, loading, error}) => {
+const mapStateToProps = ({categories: {categoriesList}}) => {
     return {
-        categories,
-        loading,
-        error
+        categories: categoriesList
     }
 };
 

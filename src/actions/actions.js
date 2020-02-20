@@ -15,12 +15,38 @@ const categoriesLoaded = (categories) => {
 
 const categoriesLoadError = (error) => {
     return {
-        type: 'FETCH_CATEGORIES_FAILURE'
+        type: 'FETCH_CATEGORIES_FAILURE',
+        payload: error
+    }
+};
+
+
+const productsRequested = (products) => {
+    return {
+        type: 'FETCH_PRODUCTS_REQUEST',
+        payload: products
+    }
+};
+
+const productsLoaded = (products) => {
+    return {
+        type: 'FETCH_PRODUCTS_SUCCESS',
+        payload: products
+    }
+};
+
+const productsError = (error) => {
+    return {
+        type: 'FETCH_PRODUCTS_FAILURE',
+        payload: error
     }
 };
 
 
 export {
+    productsRequested,
+    productsLoaded,
+    productsError,
     categoriesRequested,
     categoriesLoaded,
     categoriesLoadError
