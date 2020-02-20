@@ -1,20 +1,48 @@
-import React from "react";
+import React, { Component } from "react";
 import './items-list.scss';
 import Item from "../item";
+import MockService from "../../services/mock-data-service";
+import Spinner from "../spinner";
 
-const ItemList = () => {
-    return (
-        <div className='main'>
-            <Item/>
-            <Item/>
-            <Item/>
-            <Item/>
-            <Item/>
-            <Item/>
-            <Item/>
-            <Item/>
-        </div>
-    )
-};
+class ItemList extends Component {
+
+    state = {
+        products: null,
+        isLoaded: false
+    };
+
+    mockService = new MockService();
+
+    componentDidMount() {
+        this.mockService.getProducts()
+            .then((products) => {
+                this.setState({
+                    products: products,
+                    isLoaded: true
+                })
+            })
+    }
+
+
+    render() {
+
+        const {products, isLoaded} = this.state;
+
+        if (!isLoaded) {
+            return <Spinner/>
+        }
+
+        return (
+            <div>
+                {
+                    products.map((product) => {
+                        return <Item product={product}/>
+                    })
+                }
+            </div>
+        )
+    }
+}
+
 
 export default ItemList;

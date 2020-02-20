@@ -8,6 +8,7 @@ body {
 .wrapper {
   @extend %wrp;
   display: flex;
+
 }
 
 .left-sidebar {
@@ -15,7 +16,7 @@ body {
   position: sticky;
   top: 0;
   flex: 1;
-  background-color: aliceblue;
+  background-color: white;
   height: 100vh;
   flex-direction: column;
   overflow: auto;
@@ -24,8 +25,6 @@ body {
 .main {
   flex:3;
   flex-wrap: wrap;
-  background-color: cadetblue;
-  padding: 1em;
 }
 
 

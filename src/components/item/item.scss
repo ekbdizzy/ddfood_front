@@ -3,5 +3,21 @@
 .item {
   min-height: 300px;
   background-color: white;
-  margin: 1em;
+  margin: 1em 1em 0 1em;
+
+  &:first-child {
+    margin-top: 0;
+  }
+
+
+}
+
+.add-to-cart-btn {
+  background-color: $extra-color;
+
+  &:hover {
+    cursor: pointer;
+    background-color: $extra-color-light;
+  }
+
 }

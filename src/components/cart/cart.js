@@ -1,9 +1,12 @@
 import React from "react";
 import './cart.scss';
+import CartItemsList from "../cart-items-list/cart-items-list";
 
 const Cart = () => {
     return (
-        <div className='right-sidebar'>Cart</div>
+        <div>
+            <CartItemsList/>
+        </div>
     )
 };
 

@@ -9,9 +9,17 @@ const MainPage = () => {
     return (
         <section className='main-page'>
             <div className='wrapper'>
-                <CategoriesList/>
-                <ItemList/>
-                <Cart/>
+                <div className='left-sidebar'>
+                    <CategoriesList/>
+                </div>
+
+                <div className='main'>
+                    <ItemList/>
+                </div>
+
+                <div className='right-sidebar'>
+                    <Cart/>
+                </div>
             </div>
         </section>
     )
