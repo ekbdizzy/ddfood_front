@@ -9,7 +9,6 @@ const MainPage = () => {
     return (
         <section className='main-page'>
             <div className='wrapper'>
-                <h1>Main page!</h1>
                 <CategoriesList/>
                 <ItemList/>
                 <Cart/>

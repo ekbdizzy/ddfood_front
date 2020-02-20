@@ -4,7 +4,11 @@ import Item from "../item";
 
 const ItemList = () => {
     return (
-        <div>
+        <div className='main'>
+            <Item/>
+            <Item/>
+            <Item/>
+            <Item/>
             <Item/>
             <Item/>
             <Item/>

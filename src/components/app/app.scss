@@ -7,4 +7,34 @@ body {
 
 .wrapper {
   @extend %wrp;
+  display: flex;
+}
+
+.left-sidebar {
+  display: flex;
+  position: sticky;
+  top: 0;
+  flex: 1;
+  background-color: aliceblue;
+  height: 100vh;
+  flex-direction: column;
+  overflow: auto;
+}
+
+.main {
+  flex:3;
+  flex-wrap: wrap;
+  background-color: cadetblue;
+  padding: 1em;
+}
+
+
+.right-sidebar {
+  display: flex;
+  flex: 1;
+  top: 0;
+  position: sticky;
+  background-color: aqua;
+  height: 100vh;
+  overflow: auto;
 }

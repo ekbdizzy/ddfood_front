@@ -3,7 +3,7 @@ import './categories-list.scss';
 
 const CategoriesList = () => {
     return (
-        <div>List of categories</div>
+        <div className='left-sidebar'>List of categories</div>
     )
 };
 
