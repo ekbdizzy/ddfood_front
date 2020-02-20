@@ -1,45 +1,12 @@
 import React, { Component } from "react";
 import './categories-list.scss';
-import MockService from "../../services/mock-data-service";
-import Spinner from "../spinner";
-import ErrorIndicator from "../error-indicator";
+import { connect } from 'react-redux';
 
-export default class CategoriesList extends Component {
-
-    state = {
-        categories: null,
-        isLoaded: false,
-        error: false
-    };
-
-    mockService = new MockService();
-
-    componentDidMount() {
-        this.mockService.getCategories()
-            .then((categories) => {
-                this.setState({
-                    categories: categories,
-                    isLoaded: true
-                });
-            }).catch(() => {
-            this.setState({
-                    error: true
-                }
-            )
-        })
-    }
+class CategoriesList extends Component {
 
     render() {
 
-        const {categories, isLoaded, error} = this.state;
-
-        if (error) {
-            return <ErrorIndicator/>
-        }
-
-        if (!isLoaded) {
-            return <Spinner/>
-        }
+        const {categories} = this.props;
 
         return (
             <div className='category'>
@@ -60,3 +27,10 @@ export default class CategoriesList extends Component {
     };
 }
 
+const mapStateToProps = ({categories}) => {
+    return {
+        categories
+    }
+};
+
+export default connect(mapStateToProps)(CategoriesList);

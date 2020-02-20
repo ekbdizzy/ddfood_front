@@ -5,9 +5,8 @@ export default class CartItem extends Component {
     render() {
         const {item: {name, quantity, totalPrice}} = this.props;
         return (
-            <div>
+            <div className='cart-item'>
                 <span>{`${name} - ${quantity} шт.`}</span>
-                <hr/>
             </div>
         )
     }

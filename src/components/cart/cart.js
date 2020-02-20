@@ -4,7 +4,10 @@ import CartItemsList from "../cart-items-list/cart-items-list";
 
 const Cart = () => {
     return (
-        <div>
+        <div className='cart'>
+            <div className='cart__title'>
+                Корзина
+            </div>
             <CartItemsList/>
         </div>
     )

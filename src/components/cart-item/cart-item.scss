@@ -1,0 +1,13 @@
+@import '../app/app';
+
+.cart-item {
+  padding: 1em 0.5em;
+  font-size: 0.875em;
+  border-bottom: 1px solid $grey-color-light;
+  transition: 0.4s;
+
+  &:hover {
+    background-color: $grey-color-light;
+  }
+
+}
