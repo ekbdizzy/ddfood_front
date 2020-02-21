@@ -59,7 +59,7 @@ const products = [
 ];
 
 
-const cartItems = [
+const itemsList = [
     {
         id: 2,
         name: 'Пирожок с куриным филе, Fit&Sweet, 70 гр',
@@ -79,5 +79,5 @@ const cartItems = [
 export {
     categories,
     products,
-    cartItems
+    itemsList
 }

@@ -1,19 +1,33 @@
 import React, { Component } from "react";
 
-import { cartItems } from "../../services/mock-data";
 
 import CartItem from "../cart-item";
-import { connect } from "redux";
+import { connect } from "react-redux";
+import Spinner from "../spinner";
 
 class CartItemsList extends Component {
 
     render() {
+        const {itemsList, loading} = this.props;
+
+        if (loading) {
+            return <Spinner/>;
+        }
+
         return (
-            cartItems.map((item) => {
+            itemsList.map((item) => {
                 return <CartItem item={item}/>
             })
         )
     }
 }
 
-export default CartItemsList;
+
+const mapStateToProps = ({cart: {itemsList, loading}}) => {
+    return {
+        itemsList,
+        loading
+    }
+};
+
+export default connect(mapStateToProps)(CartItemsList);

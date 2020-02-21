@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import './products-list.scss';
-import Item from "../product";
+import Product from "../product";
 import Spinner from "../spinner";
 import { connect } from 'react-redux';
 import { products } from "../../services/mock-data";
@@ -14,7 +14,7 @@ class ProductsList extends Component {
         }
         return (
             <div>
-                {products.map((product) => <Item product={product}/>)}
+                {products.map((product) => <Product product={product}/>)}
             </div>
         )
     }

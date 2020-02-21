@@ -43,12 +43,40 @@ const productsError = (error) => {
 };
 
 
+const itemAddToCart = (productId) => {
+    return {
+        type: 'ITEM_ADDED_TO_CART',
+        payload: productId
+    }
+};
+
+
+const cartRequested = (cart) => {
+    return {
+        type: 'FETCH_CART_REQUEST',
+        payload: cart
+    }
+};
+
+
+const cartLoaded = (itemsList) => {
+    return {
+        type: 'FETCH_CART_SUCCESS',
+        payload: itemsList
+    }
+};
+
 export {
     productsRequested,
     productsLoaded,
     productsError,
+
     categoriesRequested,
     categoriesLoaded,
-    categoriesLoadError
+    categoriesLoadError,
+
+    itemAddToCart,
+    cartLoaded,
+    cartRequested
 }
 

@@ -16,9 +16,7 @@ const updateCategories = (state, action) => {
                 error: null
             };
 
-        case
-        'FETCH_CATEGORIES_SUCCESS'
-        :
+        case 'FETCH_CATEGORIES_SUCCESS':
             return {
                 categoriesList: action.payload,
                 loading: false,

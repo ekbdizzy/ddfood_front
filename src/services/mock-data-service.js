@@ -1,4 +1,4 @@
-import { categories, products, cartItems } from "./mock-data";
+import { categories, products, itemsList } from "./mock-data";
 
 export default class MockService {
 
@@ -26,13 +26,13 @@ export default class MockService {
         })
     }
 
-    getCartItems() {
+    getItemsList() {
         return new Promise((resolve, reject) => {
             setTimeout(() => {
                 if (Math.random() > 2) {
                     reject(new Error('Upload error'));
                 } else {
-                    resolve(cartItems);
+                    resolve(itemsList);
                 }
             }, 700);
         })
