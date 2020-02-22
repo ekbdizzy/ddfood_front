@@ -1,20 +1,23 @@
+import { itemsList } from "../services/mock-data";
+
 const updateItem = (item = {}, product, addQuantity) => {
     const {
         id = product.id,
         title = product.title,
-        quantity = 0
+        quantity = 0,
+        price = product.price
     } = item;
 
     return {
         id,
         title,
+        price,
         quantity: quantity + addQuantity
     }
 };
 
 
-const updateCartItem = (state, itemId, quantity) => {
-
+const updateItemsList = (state, itemId, quantity) => {
     const {cart: {itemsList}, products: {productsList}} = state;
     const product = productsList.find(({id}) => id === itemId);
     const itemIndex = itemsList.findIndex(({id}) => id === itemId);
@@ -22,39 +25,64 @@ const updateCartItem = (state, itemId, quantity) => {
     const newItem = updateItem(item, product, quantity);
 
     if (newItem.quantity === 0) {
-        return {
-            itemsList: [
-                ...itemsList.slice(0, itemIndex),
-                ...itemsList.slice(itemIndex + 1)
-            ]
-        }
-    }
-
-    if (itemIndex === -1) {
-        return {
-            itemsList: [
-                ...itemsList,
-                newItem
-            ]
-        }
-    }
-
-    return {
-        itemsList: [
+        return [
             ...itemsList.slice(0, itemIndex),
-            newItem,
             ...itemsList.slice(itemIndex + 1)
         ]
     }
+
+    if (itemIndex === -1) {
+        return [
+            ...itemsList,
+            newItem
+        ]
+    }
+
+    return [
+        ...itemsList.slice(0, itemIndex),
+        newItem,
+        ...itemsList.slice(itemIndex + 1)
+    ]
 };
 
+
+const getTotalQuantity = (itemsList) => {
+    let totalQuantity = 0;
+    itemsList.forEach((item) => {
+        totalQuantity = totalQuantity + item.quantity;
+    });
+    return totalQuantity;
+};
+
+
+const getTotalPrice = (itemsList) => {
+    let totalPrice = 0;
+    itemsList.forEach((item) => {
+        totalPrice = totalPrice + (item.quantity * item.price)
+    });
+    return totalPrice;
+};
+
+
+const updateOrder = (state, itemId, quantity) => {
+
+    const itemsList = updateItemsList(state, itemId, quantity);
+
+    return {
+        itemsList,
+        totalQuantity: getTotalQuantity(itemsList),
+        totalPrice: getTotalPrice(itemsList)
+    }
+};
 
 const updateCart = (state, action) => {
 
     if (state === undefined) {
         return {
             itemsList: [],
-            loading: false
+            loading: false,
+            totalQuantity: 0,
+            totalPrice: 0
         }
     }
 
@@ -62,23 +90,25 @@ const updateCart = (state, action) => {
         case 'FETCH_CART_REQUEST':
             return {
                 itemsList: [],
-                loading: true
+                loading: true,
             };
         case 'FETCH_CART_SUCCESS':
             return {
                 itemsList: action.payload,
-                loading: false
+                loading: false,
+                totalQuantity: getTotalQuantity(action.payload),
+                totalPrice: getTotalPrice(action.payload)
             };
 
         case 'ITEM_ADDED_TO_CART':
-            return updateCartItem(state, action.payload, 1);
+            return updateOrder(state, action.payload, 1);
 
         case 'ITEM_REMOVED_FROM_CART':
-            return updateCartItem(state, action.payload, -1);
+            return updateOrder(state, action.payload, -1);
 
         case 'ALL_ITEMS_REMOVED_FROM_CART':
             const item = state.cart.itemsList.find(({id}) => id === action.payload);
-            return updateCartItem(state, action.payload, -item.quantity);
+            return updateOrder(state, action.payload, -item.quantity);
 
 
         default:
