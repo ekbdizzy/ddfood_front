@@ -25,8 +25,8 @@ class CartItemsList extends Component {
 
 const mapStateToProps = ({cart: {itemsList, loading}}) => {
     return {
-        itemsList,
-        loading
+        itemsList: itemsList,
+        loading: loading
     }
 };
 

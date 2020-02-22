@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import CartItemsList from "../components/cart-items-list/cart-items-list";
 import MockService from "../services/mock-data-service";
 import { cartLoaded, cartRequested } from "../actions/actions";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import Cart from "../components/cart";
 
 class CartItemsListContainer extends Component {
 
@@ -21,7 +21,7 @@ class CartItemsListContainer extends Component {
     }
 
     render() {
-        return <CartItemsList/>
+        return <Cart/>
     }
 }
 

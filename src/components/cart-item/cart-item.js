@@ -3,10 +3,10 @@ import './cart-item.scss';
 
 export default class CartItem extends Component {
     render() {
-        const {item: {name, quantity, totalPrice}} = this.props;
+        const {item: {title, quantity, totalPrice}} = this.props;
         return (
             <div className='cart-item'>
-                <span>{`${name} - ${quantity} шт.`}</span>
+                <span>{`${title} - ${quantity} шт.`}</span>
             </div>
         )
     }

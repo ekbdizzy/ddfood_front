@@ -43,9 +43,25 @@ const productsError = (error) => {
 };
 
 
-const itemAddToCart = (productId) => {
+const itemAddedToCart = (productId) => {
     return {
         type: 'ITEM_ADDED_TO_CART',
+        payload: productId
+    }
+};
+
+
+const itemRemovedFromCart = (productId) => {
+    return {
+        type: 'ITEM_REMOVED_FROM_CART',
+        payload: productId
+    }
+};
+
+
+const AllItemsRemovedFromCart = (productId) => {
+    return {
+        type: 'ALL_ITEMS_REMOVED_FROM_CART',
         payload: productId
     }
 };
@@ -75,7 +91,9 @@ export {
     categoriesLoaded,
     categoriesLoadError,
 
-    itemAddToCart,
+    itemAddedToCart,
+    itemRemovedFromCart,
+    AllItemsRemovedFromCart,
     cartLoaded,
     cartRequested
 }

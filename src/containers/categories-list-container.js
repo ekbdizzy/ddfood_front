@@ -32,9 +32,8 @@ class CategoriesContainer extends Component {
     }
 }
 
-const mapStateToProps = ({categories: {categoriesList}}) => {
+const mapStateToProps = () => {
     return {
-        categories: categoriesList
     }
 };
 

@@ -27,7 +27,7 @@ const updateCategories = (state, action) => {
             console.log('Error');
 
         default:
-            return state;
+            return state.categories;
     }
 };
 

@@ -3,23 +3,38 @@ import './products-list.scss';
 import Product from "../product";
 import Spinner from "../spinner";
 import { connect } from 'react-redux';
-import { products } from "../../services/mock-data";
+import {
+    itemAddedToCart,
+    itemRemovedFromCart,
+    AllItemsRemovedFromCart
+} from "../../actions/actions";
 
 class ProductsList extends Component {
 
     render() {
-        const {products, loading} = this.props;
+        const {
+            products, loading,
+            addToCart,
+            removeFromCart,
+            allRemoveFromCart
+        } = this.props;
+
         if (loading) {
             return <Spinner/>
         }
         return (
             <div>
-                {products.map((product) => <Product product={product}/>)}
+                {
+                    products.map((product) =>
+                        <Product product={product}
+                                 addToCart={() => addToCart(product.id)}
+                                 removeFromCart={() => removeFromCart(product.id)}
+                                 allRemoveFromCart={() => allRemoveFromCart(product.id)}
+                        />)}
             </div>
-        )
+        );
     }
 }
-
 
 const mapStateToProps = ({products: {productsList, loading}}) => {
     return {
@@ -28,4 +43,14 @@ const mapStateToProps = ({products: {productsList, loading}}) => {
     }
 };
 
-export default connect(mapStateToProps)(ProductsList);
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        addToCart: (id) => dispatch(itemAddedToCart(id)),
+        removeFromCart: (id) => dispatch(itemRemovedFromCart(id)),
+        allRemoveFromCart: (id) => dispatch(AllItemsRemovedFromCart(id))
+    }
+};
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProductsList);

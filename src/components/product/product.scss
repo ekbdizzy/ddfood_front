@@ -9,7 +9,6 @@
   border-radius: 5px;
 
 
-
   &:first-child {
     margin-top: 0;
   }
@@ -24,6 +23,8 @@
   background-color: $extra-color;
   padding: 1em;
   transition: 0.7s;
+  margin-top: 1em;
+  margin-right: 0.5em;
 
   &:hover {
     cursor: pointer;

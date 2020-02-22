@@ -1,38 +1,35 @@
 import React, { Component } from "react";
 import './product.scss';
-import { bindActionCreators } from "redux";
-
-import { itemAddToCart } from "../../actions/actions";
-import { connect } from 'react-redux';
 
 class Product extends Component {
 
     render() {
-        const {product: {id, name, price}, addToCart} = this.props;
+        const {
+            product: {id, title, price},
+            addToCart,
+            removeFromCart,
+            allRemoveFromCart
+        } = this.props;
         return (
             <div key={id}
                  className='product'>
-                <div className='product_title'>{name}</div>
+                <div className='product_title'>{title}</div>
                 <div className='title'>{`Цена: ${price} руб.`}</div>
                 <button
-                    onClick={(id) => addToCart(id)}
+                    onClick={addToCart}
                     className='add-to-cart-btn'>Добавить в корзину
+                </button>
+                <button
+                    onClick={removeFromCart}
+                    className='add-to-cart-btn'>Минус 1
+                </button>
+                <button
+                    onClick={allRemoveFromCart}
+                    className='add-to-cart-btn'>Удалитьиз корзины
                 </button>
             </div>
         )
     }
 }
 
-const mapStateToProps = () => {
-    return {}
-};
-
-
-const mapDispatchToProps = (dispatch) => {
-    return {
-        addToCart: (id) => dispatch(itemAddToCart(id))
-    }
-};
-
-
-export default connect(mapStateToProps, mapDispatchToProps)(Product);
+export default Product;

@@ -28,7 +28,7 @@ const updateProducts = (state, action) => {
             console.log(action.payload);
 
         default:
-            return state;
+            return state.products;
     }
 };
 
