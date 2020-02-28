@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import CategoriesList from "../components/categories-list";
-import MockService from "../services/mock-data-service";
 import { connect } from "react-redux";
+
+import ApiService from "../services/api-services";
 
 import {
     categoriesRequested,
@@ -13,13 +14,15 @@ import { bindActionCreators } from "redux";
 class CategoriesContainer extends Component {
 
     componentDidMount() {
-        const mockService = new MockService();
+
+        const {getCategoriesList} = new ApiService;
+
         const {
             load_categories,
             request_categories
         } = this.props;
         request_categories();
-        mockService.getCategories()
+        getCategoriesList()
             .then((categories) => {
                 load_categories(categories)
             })
@@ -33,8 +36,7 @@ class CategoriesContainer extends Component {
 }
 
 const mapStateToProps = () => {
-    return {
-    }
+    return {}
 };
 
 const mapDispatchToProps = (dispatch) => {

@@ -1,14 +1,32 @@
-import React from "react";
+import React, { Component } from "react";
 import './header.scss';
+import { connect } from "react-redux";
+import Spinner from "../spinner";
 
-const Header = () => {
-    return (
-        <header className='header'>
-            <div className='wrapper'>
-                Header
-            </div>
-        </header>
-    )
+class Header extends Component {
+
+    render() {
+
+        const {city} = this.props;
+
+
+
+
+        return (
+
+            <header className='header'>
+                <div className='wrapper'>
+                    {city.name} 1
+                </div>
+            </header>
+        )
+    }
 };
 
-export default Header;
+const mapStateToProps = ({city}) => {
+    return {
+        city
+    }
+};
+
+export default connect(mapStateToProps)(Header);
