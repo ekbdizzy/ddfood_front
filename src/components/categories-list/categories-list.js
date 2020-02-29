@@ -28,7 +28,7 @@ class CategoriesList extends Component {
                 {
                     categories.map((category) => {
                         return (
-                            <div className='category__item'>
+                            <div key={category.id} className='category__item'>
                                 {category.name}
                             </div>
                         )

@@ -1,8 +1,9 @@
+import siteConfig from "../config";
+
 export default class ApiService {
 
-    _baseUrl = 'https://www.api.ddfood.ru/';
-    DaDataToken = '7aade7b140b178545c97596e3f7c0dc5e79448bb';
-    // _baseUrl = 'http://localhost:8000/';
+    _baseUrl = siteConfig.urls.baseUrl;
+    DaDataToken = siteConfig.tokens.DaDataToken;
 
     getData = async (url) => {
         const result = await fetch(`${this._baseUrl}${url}`);
@@ -10,11 +11,6 @@ export default class ApiService {
             throw new Error(`Could not fetch ${url}, received ${result.status}`);
         }
         return await result.json();
-    };
-
-    getMainData = async () => {
-        const result = await this.getData('shop/');
-        return result
     };
 
     getClientIP = async () => {
@@ -42,21 +38,6 @@ export default class ApiService {
     };
 
 
-    getCityData = async () => {
-        this.getClientIP()
-            .then((result) => {
-                this.getClientCity(result.ip)
-                    .then((city_id) => {
-                        if (city_id.location !== null) {
-                            this.getCity(city_id.location.data.region_iso_code)
-                                .then((result) => {
-                                    this.mapCityData(result);
-                                })
-                        }
-                    })
-            })
-    };
-
     mapCityData = (cityData) => {
         const {
             name, query_id, address, phone, working_time,
@@ -77,27 +58,5 @@ export default class ApiService {
         }
     };
 
-
-//     const apiService = new ApiService();
-//     apiService.getCLientIP()
-// .then((result) => {
-//     IP_loaded(result.ip);
-//     console.log(result.ip);
-//     apiService.getCLientCity(result.ip)
-// .then((city_id) => {
-//     console.log(city_id);
-//     if (city_id.location !== null) {
-//     apiService.getCityData(city_id.location.data.region_iso_code)
-// .then((cityData) => {
-//     console.log(cityData)
-// });
-// } else {
-//     console.log('City is undefined')
-// }
-
-    getCategoriesList = async () => {
-        const result = await this.getData('catalog/category/');
-        return result
-    }
 
 }

@@ -13,7 +13,7 @@ class Product extends Component {
 
 
         const {
-            product: {id, title, price},
+            product: {id, name, price},
             addToCart,
             removeFromCart,
             allRemoveFromCart,
@@ -25,7 +25,7 @@ class Product extends Component {
         return (
             <div key={id}
                  className='product'>
-                <div className='product_title'>{title}</div>
+                <div className='product_title'>{name}</div>
                 <div className='title'>{`Цена: ${price} руб.`}</div>
                 <button
                     onClick={addToCart}

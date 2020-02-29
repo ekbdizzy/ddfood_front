@@ -3,6 +3,7 @@ import ApiService from "../services/api-services";
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import App from "../components/app";
+import siteConfig from "../config";
 
 import { cityRequested, cityLoaded } from "../actions/actions";
 
@@ -10,30 +11,41 @@ import { cityRequested, cityLoaded } from "../actions/actions";
 class AppContainer extends Component {
 
     componentDidMount() {
-        // const {getClientIP, getClientCity, getCity} = new ApiService();
-        const {getCityData} = new ApiService();
+
         const {city_requested, city_loaded} = this.props;
+        const {getClientIP, getClientCity, getCity} = new ApiService();
+
 
         city_requested();
+        const sessionCityId = sessionStorage.getItem('city_id');
+        if (sessionCityId !== null) {
+            getCity(sessionCityId)
+                .then((cityData) => {
+                    city_loaded(cityData);
+                })
+        } else {
+            getClientIP()
+                .then((result) => {
+                    getClientCity(result.ip)
+                        .then((city_id) => {
+                            if (city_id.location !== null) {
+                                getCity(city_id.location.data.region_iso_code)
+                                    .then((cityData) => {
+                                        city_loaded(cityData);
+                                        sessionStorage.setItem('city_id', cityData.city_id)
+                                    });
+                            } else {
+                                getCity(siteConfig.defaults.cityId)
+                                    .then((cityData) => {
+                                        city_loaded(cityData);
+                                        sessionStorage.setItem('city_id', cityData.city_id)
+                                    });
+                            }
+                        })
+                })
+        }
 
-        // getClientIP()
-        //     .then(({ip}) => {
-        //         getClientCity(ip)
-        //             .then((city_id) => {
-        //                 if (city_id.location !== null) {
-        //                     getCity(city_id.location.data.region_iso_code)
-        //                         .then((result) => {
-        //                             city_loaded(result)
-        //                         })
-        //                 }
-        //
-        //             })
-        //     })
 
-        getCityData()
-            .then((result) => {
-                city_loaded(result)
-            })
     }
 
 
@@ -41,27 +53,6 @@ class AppContainer extends Component {
         return <App/>
     }
 }
-
-
-// componentDidMount() {
-//     const mockService = new MockService();
-//     const {
-//         load_categories,
-//         request_categories
-//     } = this.props;
-//     request_categories();
-//     mockService.getCategories()
-//         .then((categories) => {
-//             load_categories(categories)
-//         })
-// }
-//
-// render() {
-//     return (
-//         <CategoriesList/>
-//     )
-// }
-// }
 
 
 const mapStateToProps = ({city}) => {

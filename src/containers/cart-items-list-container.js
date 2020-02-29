@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import MockService from "../services/mock-data-service";
 import { cartLoaded, cartRequested } from "../actions/actions";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
@@ -8,17 +7,25 @@ import Cart from "../components/cart";
 class CartItemsListContainer extends Component {
 
     componentDidMount() {
-        const mockService = new MockService();
+
+        const cart = localStorage.getItem('cart');
         const {
             cartLoaded,
             cartRequested
         } = this.props;
-        cartRequested();
-        mockService.getItemsList()
-            .then((itemsList) => {
-                cartLoaded(itemsList)
-            })
+
+        if (cart !== null) {
+            cartRequested();
+            cartLoaded(JSON.parse(cart).itemsList);
+        } else {
+            localStorage.setItem('cart', JSON.stringify({
+                itemsList: [],
+                totalQuantity: 0,
+                totalPrice: 0
+            }))
+        }
     }
+
 
     render() {
         return <Cart/>

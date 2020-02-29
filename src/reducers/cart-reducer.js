@@ -1,16 +1,14 @@
-import { itemsList } from "../services/mock-data";
-
 const updateItem = (item = {}, product, addQuantity) => {
     const {
         id = product.id,
-        title = product.title,
+        name = product.name,
         quantity = 0,
         price = product.price
     } = item;
 
     return {
         id,
-        title,
+        name,
         price,
         quantity: quantity + addQuantity
     }
@@ -67,12 +65,14 @@ const getTotalPrice = (itemsList) => {
 const updateOrder = (state, itemId, quantity) => {
 
     const itemsList = updateItemsList(state, itemId, quantity);
-
-    return {
+    const cart = {
         itemsList,
         totalQuantity: getTotalQuantity(itemsList),
         totalPrice: getTotalPrice(itemsList)
-    }
+    };
+    localStorage.setItem('cart', JSON.stringify(cart));
+
+    return cart;
 };
 
 const updateCart = (state, action) => {

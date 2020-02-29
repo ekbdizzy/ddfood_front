@@ -26,7 +26,8 @@ class ProductsList extends Component {
             <div>
                 {
                     products.map((product) =>
-                        <Product product={product}
+                        <Product key={product.id}
+                                 product={product}
                                  addToCart={() => addToCart(product.id)}
                                  removeFromCart={() => removeFromCart(product.id)}
                                  allRemoveFromCart={() => allRemoveFromCart(product.id)}

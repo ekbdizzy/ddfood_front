@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
-import MockService from "../services/mock-data-service";
+import ApiService from "../services/api-services";
 import {
     productsRequested,
     productsLoaded,
@@ -8,6 +8,7 @@ import {
 } from "../actions/actions";
 import ProductsList from "../components/products-list";
 import { bindActionCreators } from "redux";
+import siteConfig from "../config";
 
 class ProductsListContainer extends Component {
 
@@ -15,12 +16,12 @@ class ProductsListContainer extends Component {
         const {
             products_requested,
             products_loaded,
-            products_error
+            // products_error
         } = this.props;
 
+        const apiService = new ApiService();
         products_requested();
-        const mockService = new MockService();
-        mockService.getProducts()
+        apiService.getData(siteConfig.urls.getProductsUrl)
             .then((products) => {
                 products_loaded(products);
             })
