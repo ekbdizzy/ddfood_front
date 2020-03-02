@@ -19,6 +19,8 @@ class ProductsList extends Component {
             allRemoveFromCart
         } = this.props;
 
+        console.log(products);
+
         if (loading) {
             return <Spinner/>
         }

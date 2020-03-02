@@ -1,4 +1,8 @@
 import siteConfig from "../config";
+import {
+    mapProductData,
+    mapCityData
+} from "./mappers";
 
 export default class ApiService {
 
@@ -34,28 +38,7 @@ export default class ApiService {
 
     getCity = async (city_id) => {
         const result = await this.getData(`city/${city_id}`);
-        return this.mapCityData(result);
-    };
-
-
-    mapCityData = (cityData) => {
-        const {
-            name, query_id, address, phone, working_time,
-            delivery_info, minimal_price_for_delivery,
-            delivery_price, is_self_delivery, self_delivery_info
-        } = cityData;
-        return {
-            name,
-            city_id: query_id,
-            address,
-            phone,
-            workingTime: working_time,
-            deliveryInfo: delivery_info,
-            minimalPriceForDelivery: minimal_price_for_delivery,
-            deliveryPrice: delivery_price,
-            isSelfDelivery: is_self_delivery,
-            selfDeliveryInfo: self_delivery_info
-        }
+        return mapCityData(result);
     };
 
 

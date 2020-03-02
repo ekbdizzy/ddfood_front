@@ -1,8 +1,9 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import './app.scss';
 import Header from "../header";
 import MainPage from "../main-page";
+import Checkout from "../checkout";
 import Footer from "../footer";
 
 
@@ -17,9 +18,16 @@ export default class App extends Component {
             <div>
                 <Header/>
 
-                <Route path='/'
-                       component={MainPage}
-                       />
+                <Switch>
+                    <Route path='/checkout/'
+                           render={() => <Checkout/>}
+                           exact/>
+
+                    <Route path='/'
+                           component={MainPage}
+                    />
+                </Switch>
+
 
                 <Footer/>
             </div>

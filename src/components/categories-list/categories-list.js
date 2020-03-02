@@ -8,19 +8,14 @@ import ErrorIndicator from "../error-indicator";
 
 class CategoriesList extends Component {
 
-
     render() {
-
         const {categories, loading, error} = this.props;
 
         if (loading) {
             return <Spinner/>;
+        } else if (error) {
+            return <ErrorIndicator/>
         }
-
-        if (error) {
-            return <ErrorIndicator/>;
-        }
-
 
         return (
             <div className='category'>
@@ -31,10 +26,9 @@ class CategoriesList extends Component {
                 {
                     categories.map((category) => {
                         return (
-                            // TODO
-                            <Link to={`/category/${category.id}`}>
-                                <div key={category.id}
-                                     className='category__item'>
+                            <Link key={category.id}
+                                  to={`/category/${category.id}`}>
+                                <div className='category__item'>
                                     {category.name}
                                 </div>
                             </Link>
@@ -46,13 +40,14 @@ class CategoriesList extends Component {
     };
 }
 
-const mapStateToProps = ({categories: {categoriesList, error, loading}}) => {
+const mapStateToProps =
+    ({categories: {categoriesList, error, loading}}) => {
 
-    return {
-        categories: categoriesList,
-        error,
-        loading
-    }
-};
+        return {
+            categories: categoriesList,
+            error,
+            loading
+        }
+    };
 
 export default connect(mapStateToProps)(CategoriesList);

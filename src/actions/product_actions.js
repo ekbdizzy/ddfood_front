@@ -1,3 +1,6 @@
+import { mapProductData } from '../services/mappers';
+
+
 const productsRequested = () => {
     return {
         type: 'FETCH_PRODUCTS_REQUEST',
@@ -8,7 +11,7 @@ const productsRequested = () => {
 const productsLoaded = (products) => {
     return {
         type: 'FETCH_PRODUCTS_SUCCESS',
-        payload: products
+        payload: products.map(product => mapProductData(product))
     }
 };
 

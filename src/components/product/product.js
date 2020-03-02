@@ -1,8 +1,25 @@
 import React, { Component } from "react";
 import './product.scss';
+import imageBlank from '../../assets/img/image_blank.jpg'
 import { connect } from "react-redux";
 
 class Product extends Component {
+
+
+    setMeasure = (measure) => {
+        switch (measure) {
+            case 'гр.':
+                return 'Масса: ';
+            case 'кг.':
+                return 'Масса: ';
+            case 'мл':
+                return 'Объем: ';
+            case 'л':
+                return 'Объем: ';
+            default:
+                return 'Количество: ';
+        }
+    };
 
 
     getItem = (productId, itemsList = []) => {
@@ -10,10 +27,14 @@ class Product extends Component {
     };
 
     render() {
-
-
         const {
-            product: {id, name, price},
+            product: {
+                id, name, slug, article, categories, tradeMark, mass,
+                measure, contain, protein, carbs, fat, fibers, price, sale, promo,
+                krahmal, kletchatka, isolat, gluten, inulin,
+                breadOnes, dryMilk, dukanPhases,
+                energyValueCalories, bestBefore, baseImage,
+            },
             addToCart,
             removeFromCart,
             allRemoveFromCart,
@@ -23,30 +44,82 @@ class Product extends Component {
         const item = this.getItem(id, itemsList);
 
         return (
+
             <div key={id}
                  className='product'>
-                <div className='product_title'>{name}</div>
-                <div className='title'>{`Цена: ${price} руб.`}</div>
-                <button
-                    onClick={addToCart}
-                    className='add-to-cart-btn'>
-                    {item ? `В корзине ${item.quantity} шт.` : 'Добавить в корзину'}
-                </button>
 
-                {(item) ?
-                    <div>
-                        <button
-                            onClick={removeFromCart}
-                            className='add-to-cart-btn'>Минус 1
-                        </button>
+                <div className='product__left-side'>
+                    <img src={baseImage ? baseImage : imageBlank}
+                         className='product__image'
+                         alt={name}
+                    />
+                    <div className='product__price'>{`Цена: ${price} руб.`}</div>
+                    <button
+                        onClick={addToCart}
+                        className='add-to-cart-btn'>
+                        {item ? `В корзине ${item.quantity} шт.` : 'Добавить в корзину'}
+                    </button>
 
-                        <button
-                            onClick={allRemoveFromCart}
-                            className='add-to-cart-btn'>Удалитьиз корзины
-                        </button>
+                    {(item) ?
+                        <div>
+                            <button
+                                onClick={removeFromCart}
+                                className='add-to-cart-btn'>Минус 1
+                            </button>
+
+                            <button
+                                onClick={allRemoveFromCart}
+                                className='add-to-cart-btn'>Удалить из корзины
+                            </button>
+                        </div>
+                        : ""
+                    }
+
+                </div>
+
+                <div className="product__right-side">
+                    <div className='product__title'>{name}</div>
+                    <div className='product__text'>{`Состав: ${contain}`}</div>
+                    <div className='product__text-bold'>В 100 граммах:</div>
+                    <div className='product_nutritions'>
+                        {protein !== '0.0' ?
+                            <span className='product__tag'>{`Белки:\u00A0${protein}\u00A0гр.`}
+                                </span> : ''}
+
+                        {fat !== '0.0' ?
+                            <span className='product__tag'>{`Жиры:\u00A0${fat}\u00A0гр.`}
+                                </span> : ''}
+
+                        {carbs !== '0.0' ?
+                            <span className='product__tag'>{`Углеводы:\u00A0${carbs}\u00A0гр.`}
+                                </span> : ''}
+
+                        {fibers !== '0.0' ?
+                            <span className='product__tag'>
+                                {`Пищевые\u00A0волокна:\u00A0${fibers}\u00A0гр.`}
+                            </span> : ''}
+
+                        {energyValueCalories !== '0.0' ?
+                            <span className='product__tag product__text-bold'>
+                                {`${energyValueCalories}\u00A0ккал.`}
+                            </span> : ''}
                     </div>
-                    : ""
-                }
+
+                    {bestBefore ?
+                        <div className='product__text'>{`Срок годности: ${bestBefore}`}</div>
+                        : ""}
+
+                    {tradeMark ?
+                        <div className='product__text'>{`Торговая марка: ${tradeMark}`}</div>
+                        : ""}
+
+                    <div className='product_mass'>
+                        {`${this.setMeasure(measure)} ${mass} ${measure}`}
+                    </div>
+
+
+                </div>
+
 
             </div>
         )
