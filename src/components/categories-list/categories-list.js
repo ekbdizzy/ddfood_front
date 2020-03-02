@@ -1,8 +1,10 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import './categories-list.scss';
 import { connect } from 'react-redux';
 import Spinner from "../spinner";
 import ErrorIndicator from "../error-indicator";
+
 
 class CategoriesList extends Component {
 
@@ -19,6 +21,7 @@ class CategoriesList extends Component {
             return <ErrorIndicator/>;
         }
 
+
         return (
             <div className='category'>
                 <div className='category__title'>
@@ -28,9 +31,13 @@ class CategoriesList extends Component {
                 {
                     categories.map((category) => {
                         return (
-                            <div key={category.id} className='category__item'>
-                                {category.name}
-                            </div>
+                            // TODO
+                            <Link to={`/category/${category.id}`}>
+                                <div key={category.id}
+                                     className='category__item'>
+                                    {category.name}
+                                </div>
+                            </Link>
                         )
                     })
                 }

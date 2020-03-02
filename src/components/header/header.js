@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import './header.scss';
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 
 class Header extends Component {
 
@@ -9,6 +10,7 @@ class Header extends Component {
         return (
             <header className='header'>
                 <div className='wrapper'>
+                    <Link to={'/'}>Main</Link>
                     {city.name} - {city.address}
                 </div>
             </header>

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import './app.scss';
 import Header from "../header";
 import MainPage from "../main-page";
@@ -15,7 +16,11 @@ export default class App extends Component {
         return (
             <div>
                 <Header/>
-                <MainPage/>
+
+                <Route path='/'
+                       component={MainPage}
+                       />
+
                 <Footer/>
             </div>
         )

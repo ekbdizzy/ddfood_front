@@ -15,7 +15,7 @@ const itemRemovedFromCart = (productId) => {
 };
 
 
-const AllItemsRemovedFromCart = (productId) => {
+const allItemsRemovedFromCart = (productId) => {
     return {
         type: 'ALL_ITEMS_REMOVED_FROM_CART',
         payload: productId
@@ -42,7 +42,7 @@ const cartLoaded = (itemsList) => {
 export {
     itemAddedToCart,
     itemRemovedFromCart,
-    AllItemsRemovedFromCart,
+    allItemsRemovedFromCart,
     cartRequested,
     cartLoaded
 }

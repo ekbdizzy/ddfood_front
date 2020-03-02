@@ -1,7 +1,7 @@
-const productsRequested = (products) => {
+const productsRequested = () => {
     return {
         type: 'FETCH_PRODUCTS_REQUEST',
-        payload: products
+        payload: []
     }
 };
 

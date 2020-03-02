@@ -28,8 +28,8 @@ class CategoriesContainer extends Component {
                 load_categories(categories)
             })
     }
-
     render() {
+
         return (
             <CategoriesList/>
         )

@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import {
     itemAddedToCart,
     itemRemovedFromCart,
-    AllItemsRemovedFromCart
+    allItemsRemovedFromCart
 } from "../../actions/actions";
 
 class ProductsList extends Component {
@@ -49,7 +49,7 @@ const mapDispatchToProps = (dispatch) => {
     return {
         addToCart: (id) => dispatch(itemAddedToCart(id)),
         removeFromCart: (id) => dispatch(itemRemovedFromCart(id)),
-        allRemoveFromCart: (id) => dispatch(AllItemsRemovedFromCart(id))
+        allRemoveFromCart: (id) => dispatch(allItemsRemovedFromCart(id))
     }
 };
 

@@ -4,7 +4,7 @@ import { cityRequested, cityLoaded } from './city_actions';
 import {
     itemAddedToCart,
     itemRemovedFromCart,
-    AllItemsRemovedFromCart,
+    allItemsRemovedFromCart,
     cartRequested,
     cartLoaded
 } from './cart_actions';
@@ -21,7 +21,7 @@ export {
 
     itemAddedToCart,
     itemRemovedFromCart,
-    AllItemsRemovedFromCart,
+    allItemsRemovedFromCart,
     cartLoaded,
     cartRequested,
 
