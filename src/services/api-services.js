@@ -17,6 +17,9 @@ export default class ApiService {
         return await result.json();
     };
 
+
+
+
     getClientIP = async () => {
         const result = await fetch('https://api.ipify.org?format=json');
         return await result.json();
@@ -37,7 +40,7 @@ export default class ApiService {
     };
 
     getCity = async (city_id) => {
-        const result = await this.getData(`city/${city_id}`);
+        const result = await this.getData(`/city/${city_id}`);
         return mapCityData(result);
     };
 

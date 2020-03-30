@@ -1,11 +1,11 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 import ApiService from "../services/api-services";
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
 import App from "../components/app";
 import siteConfig from "../config";
 
-import { cityRequested, cityLoaded } from "../actions/actions";
+import {cityRequested, cityLoaded} from "../actions/actions";
 
 
 class AppContainer extends Component {
@@ -14,7 +14,6 @@ class AppContainer extends Component {
 
         const {city_requested, city_loaded} = this.props;
         const {getClientIP, getClientCity, getCity} = new ApiService();
-
 
         city_requested();
         const sessionCityId = sessionStorage.getItem('city_id');

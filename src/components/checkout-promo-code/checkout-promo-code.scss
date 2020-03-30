@@ -1,0 +1,55 @@
+@import '../app/app';
+
+
+.checkout-promo-code {
+  display: flex;
+  flex-direction: row;
+  background-color: $grey-color-light;
+  padding: 2em;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.promo-code {
+  display: flex;
+  flex-basis: 50%;
+  flex-direction: column;
+
+  &__label {
+
+  }
+
+  &__remove {
+    @extend %base-text;
+    color: $grey-color;
+
+    &:hover {
+      cursor: pointer;
+      color: $base-color-light;
+    }
+
+  }
+}
+
+.checkout-price {
+  display: flex;
+  flex-direction: column;
+  text-align: end;
+
+  &__without-sale {
+    @extend %base-text;
+    color: $grey-color;
+  }
+
+  &__sale {
+    @extend %base-text;
+    color: $base-color-light;
+  }
+
+  &__total {
+    @extend %title;
+    font-size: 1.2em;
+  }
+
+
+}

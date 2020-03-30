@@ -1,1 +1,35 @@
 @import '../app/app';
+
+
+.checkout {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-content: space-between;
+  width: 100%;
+
+
+  &__right-side {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 1em;
+    //border: 1px solid white;
+
+  }
+
+
+  &__left-side {
+    display: flex;
+    width: 100%;
+    padding: 1em;
+    //border: 1px solid white;
+
+
+
+  }
+
+
+
+
+}

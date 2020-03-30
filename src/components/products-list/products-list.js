@@ -1,8 +1,8 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 import './products-list.scss';
 import Product from "../product";
 import Spinner from "../spinner";
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 import {
     itemAddedToCart,
     itemRemovedFromCart,
@@ -18,8 +18,6 @@ class ProductsList extends Component {
             removeFromCart,
             allRemoveFromCart
         } = this.props;
-
-        console.log(products);
 
         if (loading) {
             return <Spinner/>

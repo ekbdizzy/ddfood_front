@@ -1,7 +1,7 @@
 import React from "react";
 import './main-page.scss';
-import { Route } from 'react-router-dom';
-import { withRouter } from "react-router-dom";
+import {Route} from 'react-router-dom';
+import {withRouter} from "react-router-dom";
 
 import CategoriesContainer from "../../containers/categories-list-container";
 import ProductsListContainer from "../../containers/products-list-container";
@@ -29,7 +29,6 @@ const MainPage = () => {
                                />
                            }}/>
                 </div>
-
                 <Route path='/'
                        render={() => {
                            return (
@@ -38,7 +37,6 @@ const MainPage = () => {
                                </div>
                            )
                        }}/>
-
             </div>
         </section>
     )

@@ -21,8 +21,6 @@ const updateCity = (state, action) => {
         switch (action.type) {
 
             case 'FETCH_CITY_REQUEST':
-
-
                 return {
                     name: 'Загрузка',
                     query_id: null,
@@ -38,7 +36,6 @@ const updateCity = (state, action) => {
 
 
             case 'FETCH_CITY_SUCCESS':
-
                 const {
                     name,
                     city_id,

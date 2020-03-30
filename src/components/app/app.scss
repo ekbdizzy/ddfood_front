@@ -8,7 +8,6 @@ body {
 .wrapper {
   @extend %wrp;
   display: flex;
-
 }
 
 .left-sidebar {
@@ -35,4 +34,13 @@ body {
   position: sticky;
   height: 100vh;
   overflow: auto;
+}
+
+.link-white {
+  @extend %base-text;
+  color: white;
+
+  &:hover {
+    color: $extra-color;
+  }
 }

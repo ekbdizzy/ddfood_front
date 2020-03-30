@@ -1,0 +1,62 @@
+@import '../app/app';
+
+.checkout-items-details {
+  margin: 1em 0 0 0;
+  padding: 2em;
+  background-color: white;
+  width: 100%;
+
+  &__title {
+    @extend %title;
+    font-size: 1.5em;
+    padding-bottom: 1em;
+  }
+}
+
+.item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-content: baseline;
+  padding: 1em 0;
+  border-top: 1px solid $grey-color-light;
+
+  &__name {
+    flex-basis: 50%;
+    padding-right: 0.5em;
+  }
+
+  &__changeQty {
+    display: flex;
+    justify-content: center;
+    align-content: baseline;
+    margin: auto;
+    font-size: 1.2em;
+
+    div {
+      padding: 0 0.5em;
+      margin: 0.2em;
+      transition: 0.3s;
+
+
+      &:first-child, &:last-child {
+        &:hover {
+          background-color: $extra-color;
+          cursor: pointer;
+          border-radius: 3px;
+        }
+      }
+    }
+
+  }
+
+  &__price {
+    display: flex;
+    margin: auto 0 auto 0.5em;
+  }
+
+
+}
+
+
+
