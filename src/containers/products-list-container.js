@@ -38,7 +38,6 @@ class ProductsListContainer extends Component {
     }
 
     componentDidUpdate(prevProps) {
-
         const {
             products_requested,
             products_loaded,

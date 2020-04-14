@@ -41,8 +41,6 @@ class Checkout extends Component {
                         <CheckoutPromoCode
                             cart={cart}
                         />
-
-
                     </div>
 
                     <div className='checkout__left-side'>
