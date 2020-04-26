@@ -4,10 +4,10 @@
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.4.0",
+    "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
-    "react": "^16.12.0",
-    "react-dom": "^16.12.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
     "react-redux": "^7.2.0",
     "react-router": "^5.1.2",
     "react-router-dom": "^5.1.2",
@@ -39,7 +39,7 @@
   "devDependencies": {
     "install": "^0.13.0",
     "node-sass": "^4.13.1",
-    "npm": "^6.13.7",
+    "npm": "^6.14.4",
     "sass-loader": "^8.0.2"
   }
 }

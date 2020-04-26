@@ -37,7 +37,6 @@ class CheckoutItemsDetails extends Component {
 
     render() {
         const cart = JSON.parse(localStorage.getItem('cart')) || this.props.cart;
-        console.log(cart);
         return (
             <div className='checkout-items-details'>
                 <h1 className='checkout-items-details__title'>Мой заказ</h1>
@@ -62,6 +61,8 @@ const mapDispatchToProps = (dispatch) => {
         removeFromCart: (id) => dispatch(itemRemovedFromCart(id)),
     }
 };
+
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(CheckoutItemsDetails);
 

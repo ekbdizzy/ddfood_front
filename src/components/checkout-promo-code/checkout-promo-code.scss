@@ -16,7 +16,26 @@
   flex-direction: column;
 
   &__label {
+    margin-bottom: 0.5em;
+  }
 
+  &__input {
+    @extend %base-text;
+    font-size: 1.1em;
+    color: $grey-color;
+    padding: 0.5em;
+    width: 100%;
+    border-style: solid;
+    border-radius: 0.3em;
+    border-color: $grey-color-medium;
+    border-width: 1px;
+
+    &:focus {
+      border-style: solid;
+      padding: calc(0.5em - 1px) calc(0.5em - 1px);
+      border-color: $grey-color-medium;
+      border-width: 2px;
+    }
   }
 
   &__remove {
@@ -27,8 +46,25 @@
       cursor: pointer;
       color: $base-color-light;
     }
+  }
+
+  &__submit {
+    background-color: white;
+    padding: 0.6em 1em;
+    margin-top: 0.5em;
+    width: fit-content;
+    opacity: 1;
+    transition: 0.5s;
+    border-radius: 0.3em;
+
+    &:hover {
+      cursor: pointer;
+      opacity: 0.8;
+      background-color: $grey-color-medium;
+    }
 
   }
+
 }
 
 .checkout-price {
