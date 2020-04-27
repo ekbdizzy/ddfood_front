@@ -47,36 +47,51 @@ class Product extends Component {
         const item = this.getItem(id, itemsList);
 
         return (
-
             <div key={id}
                  className='product'>
-
                 <div className='product__left-side'>
                     <img src={baseImage ? baseImage : imageBlank}
                          className='product__image'
                          alt={name}
                     />
                     <div className='product__price'>{`Цена: ${price} руб.`}</div>
-                    <button
-                        onClick={addToCart}
-                        className='add-to-cart-btn'>
-                        {item ? `В корзине ${item.quantity} шт.` : 'Добавить в корзину'}
-                    </button>
 
-                    {(item) ?
-                        <div>
-                            <button
-                                onClick={removeFromCart}
-                                className='add-to-cart-btn'>Минус 1
+
+                    {item ? (
+                        <div className='added-block'>
+                            <button className='added-block__button'
+                                    onClick={removeFromCart}>–
                             </button>
-
-                            <button
-                                onClick={allRemoveFromCart}
-                                className='add-to-cart-btn'>Удалить из корзины
+                            <p className='added-block__quantity'>
+                                {item.quantity}{'\u00A0'}шт.
+                            </p>
+                            <button className='added-block__button'
+                                    onClick={addToCart}>+
                             </button>
                         </div>
-                        : ""
-                    }
+                    ) : (
+                        <button
+                            onClick={addToCart}
+                            className='add-to-cart-btn'>
+                            Добавить
+                        </button>
+                    )}
+
+
+                    {/*{(item) ?*/}
+                    {/*    <div>*/}
+                    {/*        <button*/}
+                    {/*            onClick={removeFromCart}*/}
+                    {/*            className='add-to-cart-btn'>Минус 1*/}
+                    {/*        </button>*/}
+
+                    {/*        <button*/}
+                    {/*            onClick={allRemoveFromCart}*/}
+                    {/*            className='add-to-cart-btn'>Удалить из корзины*/}
+                    {/*        </button>*/}
+                    {/*    </div>*/}
+                    {/*    : ""*/}
+                    {/*}*/}
 
                 </div>
 

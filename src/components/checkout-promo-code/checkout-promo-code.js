@@ -6,10 +6,8 @@ class CheckoutPromoCode extends Component {
         const {cart: {totalPrice}} = this.props;
         return (
             <section className='checkout-promo-code'>
-
-                {/*<PromoCodeIsNotActive totalPrice={totalPrice}/>*/}
-
-                <PromoCodeIsActive totalPrice={totalPrice}/>
+                <PromoCodeIsNotActive totalPrice={totalPrice}/>
+                {/*<PromoCodeIsActive totalPrice={totalPrice}/>*/}
             </section>
         )
     }

@@ -1,8 +1,9 @@
-import React, { Component } from "react";
-import { cartLoaded, cartRequested } from "../actions/actions";
-import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
+import React, {Component} from "react";
+import {cartLoaded, cartRequested, allItemsRemovedFromCart} from "../actions/actions";
+import {connect} from "react-redux";
+import {bindActionCreators} from "redux";
 import Cart from "../components/cart";
+import Product from "../components/product";
 
 class CartItemsListContainer extends Component {
 
@@ -11,7 +12,7 @@ class CartItemsListContainer extends Component {
         const cart = localStorage.getItem('cart');
         const {
             cartLoaded,
-            cartRequested
+            cartRequested,
         } = this.props;
 
         if (cart !== null) {
@@ -28,6 +29,7 @@ class CartItemsListContainer extends Component {
 
 
     render() {
+        const {allItemRemoved} = this.props;
         return <Cart/>
     }
 }
@@ -42,7 +44,7 @@ const mapStateToProps = ({cart: {itemsList, loading}}) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         cartRequested: bindActionCreators(cartRequested, dispatch),
-        cartLoaded: bindActionCreators(cartLoaded, dispatch)
+        cartLoaded: bindActionCreators(cartLoaded, dispatch),
     }
 };
 
