@@ -1,10 +1,9 @@
 import React, {Component} from "react";
-import {Link} from "react-router-dom";
-import './product.scss';
+import './product-page.scss';
 import imageBlank from '../../assets/img/image_blank.jpg'
 import {connect} from "react-redux";
 
-class Product extends Component {
+class ProductPage extends Component {
     setMeasure = (measure) => {
         switch (measure) {
             case 'гр.':
@@ -46,16 +45,16 @@ class Product extends Component {
 
         const item = this.getItem(id, itemsList);
 
+        // console.log(id);
+        console.log('Itemslist', itemsList);
         return (
             <div key={id}
                  className='product'>
                 <div className='product__left-side'>
-                    <Link to={`/product/${id}`}>
-                        <img src={baseImage ? baseImage : imageBlank}
-                             className='product__image'
-                             alt={name}
-                        />
-                    </Link>
+                    <img src={baseImage ? baseImage : imageBlank}
+                         className='product__image'
+                         alt={name}
+                    />
                     <div className='product__price'>{`Цена: ${price} руб.`}</div>
 
 
@@ -82,9 +81,7 @@ class Product extends Component {
                 </div>
 
                 <div className="product__right-side">
-                    <Link to={`/product/${id}`}>
-                        <div className='product__title'>{name}</div>
-                    </Link>
+                    <div className='product__title'>{name}</div>
                     <div className='product__text'>{`Состав: ${contain}`}</div>
                     <div className='product__text-bold'>В 100 граммах:</div>
                     <div className='product_nutritions'>
@@ -144,4 +141,5 @@ const mapStateToProps = ({cart: {itemsList}}) => {
     }
 };
 
-export default connect(mapStateToProps)(Product);
+
+export default connect(mapStateToProps)(ProductPage);

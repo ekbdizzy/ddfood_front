@@ -3,8 +3,8 @@ import { Route, Switch } from 'react-router-dom';
 import './app.scss';
 import Header from "../header";
 import MainPage from "../main-page";
-import Checkout from "../checkout";
 import Footer from "../footer";
+import CheckoutContainer from "../../containers/checkout-container";
 
 
 export default class App extends Component {
@@ -20,16 +20,17 @@ export default class App extends Component {
 
                 <Switch>
                     <Route path='/checkout/'
-                           render={() => <Checkout/>}
+                           render={() => <CheckoutContainer/>}
                            exact/>
 
                     <Route path='/'
                            component={MainPage}
                     />
                 </Switch>
+                <Header/>
 
 
-                <Footer/>
+                {/*<Footer/>*/}
             </div>
         )
     }

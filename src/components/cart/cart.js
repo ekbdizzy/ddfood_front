@@ -1,8 +1,8 @@
 import React from "react";
 import './cart.scss';
 import CartItemsList from "../cart-items-list/cart-items-list";
-import { connect } from 'react-redux';
-import { Link } from "react-router-dom";
+import {connect} from 'react-redux';
+import {Link} from "react-router-dom";
 
 const Cart = ({totalQuantity, totalPrice}) => {
     return (
@@ -11,15 +11,17 @@ const Cart = ({totalQuantity, totalPrice}) => {
                 Корзина
             </div>
             <CartItemsList/>
-            <div className='pd1'>
+            <div className='cart__total'>
                 {!(totalQuantity && totalPrice) ? <div>Пусто</div> : ''}
-                {totalQuantity ? <div>Всего товаров: {totalQuantity}</div> : ''}
-                {totalPrice ? <div>Сумма заказа: {totalPrice}</div> : ""}
-
+                {totalQuantity ? <div className='total-quantity'>Всего товаров: {totalQuantity} шт.</div> : ''}
+                {totalPrice ? <div className='total-price'>Всего: {totalPrice} р.</div> : ""}
             </div>
 
-            {totalPrice ? <Link to={'/checkout/'}>
-                    <div>Оформить заказ</div>
+            {totalPrice ?
+                <Link to={'/checkout/'}>
+                    <div className='cart__submit'>
+                        Оформить{'\u00A0'}заказ
+                    </div>
                 </Link>
                 : ""}
 

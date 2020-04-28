@@ -1,7 +1,66 @@
 @import "../app/app";
 
-.header {
+.header-wrapper {
   background-color: $base-color-light;
   height: 100px;
   color: white;
+  height: auto;
 }
+
+.top-nav {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  transition: 1s;
+  height: max-content;
+
+
+  @media screen and (max-width: $smDesktopWidth) {
+    flex-direction: column;
+    align-items: center;
+    height: 25em;
+
+  }
+
+
+  .logo {
+    max-width: 200px;
+  }
+
+  .nav-link {
+    font-size: 1em;
+    color: white;
+    transition: 0.3s;
+
+    &:hover {
+      cursor: pointer;
+      color: $extra-color;
+    }
+
+  }
+
+  .nav-text {
+    @extend %base-text;
+    text-align: center;
+    color: white;
+  }
+
+  .nav-city {
+    @extend %title-white;
+
+    &:hover {
+      cursor: pointer;
+      color: $extra-color;
+    }
+
+
+  }
+
+
+}
+
+
+
+

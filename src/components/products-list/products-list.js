@@ -6,7 +6,6 @@ import {connect} from 'react-redux';
 import {
     itemAddedToCart,
     itemRemovedFromCart,
-    allItemsRemovedFromCart
 } from "../../actions/actions";
 
 class ProductsList extends Component {
@@ -16,7 +15,6 @@ class ProductsList extends Component {
             products, loading,
             addToCart,
             removeFromCart,
-            allRemoveFromCart
         } = this.props;
 
         if (loading) {
@@ -30,7 +28,6 @@ class ProductsList extends Component {
                                  product={product}
                                  addToCart={() => addToCart(product.id)}
                                  removeFromCart={() => removeFromCart(product.id)}
-                                 allRemoveFromCart={() => allRemoveFromCart(product.id)}
                         />)}
             </div>
         );
@@ -49,7 +46,6 @@ const mapDispatchToProps = (dispatch) => {
     return {
         addToCart: (id) => dispatch(itemAddedToCart(id)),
         removeFromCart: (id) => dispatch(itemRemovedFromCart(id)),
-        allRemoveFromCart: (id) => dispatch(allItemsRemovedFromCart(id))
     }
 };
 

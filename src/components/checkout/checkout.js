@@ -1,30 +1,15 @@
 import React, {Component} from "react";
 import {Link} from "react-router-dom";
 import './checkout.scss';
-import ApiService from "../../services/api-services";
 
 import CheckoutItemsDetails from "../checkout-items-details";
 import CheckoutOrderDetails from "../checkout-order-details";
 import CheckoutPromoCode from "../checkout-promo-code";
 
-
 import {connect} from "react-redux";
-import Product from "../product";
-import {allItemsRemovedFromCart, itemAddedToCart, itemRemovedFromCart} from "../../actions/cart_actions";
 
 
 class Checkout extends Component {
-
-    componentDidMount() {
-
-        // const apiService = new ApiService();
-        // const items = apiService.getProductsInCart()
-        //     .then((result) => {
-        //        console.log(result);
-        //     });
-
-    }
-
 
     render() {
         const cart = JSON.parse(localStorage.getItem('cart')) || this.props.cart;

@@ -14,9 +14,46 @@
     color: white;
   }
 
+  &__submit {
+    padding: 1.1em 1.5em;
+    text-align: center;
+    color: black;
+    width: max-content;
+    margin: auto;
+    border: solid 0.1em $extra-color;
+    border-radius: 0.3em;
+    transition: 0.5s;
+
+    &:hover {
+      cursor: pointer;
+      background-color: $extra-color;
+    }
+
+    a {
+      color: black;
+    }
+  }
+
+  &__total {
+    padding: 0.5em;
+
+    .total-quantity {
+      text-align: right;
+      font-size: 0.85em;
+      color: $grey-color;
+    }
+
+    .total-price {
+      //@extend %title;
+      padding: 0.7em 0;
+      text-align: center;
+      font-size: 1.5em;
+      color: $base-color-light;
+
+    }
+
+  }
+
 
 }
 
-.pd1 {
-  padding: 0.5em;
-}

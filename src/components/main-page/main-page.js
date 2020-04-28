@@ -6,6 +6,7 @@ import {withRouter} from "react-router-dom";
 import CategoriesContainer from "../../containers/categories-list-container";
 import ProductsListContainer from "../../containers/products-list-container";
 import CartItemsListContainer from "../../containers/cart-items-list-container";
+import ProductPageContainer from "../../containers/product-page-container";
 
 const MainPage = () => {
 
@@ -28,6 +29,13 @@ const MainPage = () => {
                                    categoryId={id}
                                />
                            }}/>
+                    <Route path='/product/:id'
+                           render={({match}) => {
+                               const {id} = match.params;
+                               return <ProductPageContainer productId={id}
+                               />
+                           }}
+                    />
                 </div>
                 <Route path='/'
                        render={() => {

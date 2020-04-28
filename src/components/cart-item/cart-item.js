@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {Link} from "react-router-dom";
 import './cart-item.scss';
 
 export default class CartItem extends Component {
@@ -7,9 +8,13 @@ export default class CartItem extends Component {
         return (
             <div key={id}
                  className='cart-item'>
-                <span>{`${name} - ${quantity} шт.`}</span>
-                <button onClick={allItemsRemoved}
-                >x
+                <Link to={`/product/${id}`}>
+                    <div className='cart-item__title'>
+                        {name}</div>
+                </Link>
+                <div className='cart-item__quantity'>{quantity}{'\u00A0'}шт.</div>
+                <button className='cart-item__remove'
+                        onClick={allItemsRemoved}>✕
                 </button>
             </div>
         )

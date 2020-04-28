@@ -1,6 +1,9 @@
 @import '../app/app';
 
 .cart-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   padding: 1em 0.5em;
   font-size: 0.875em;
   border-bottom: 1px solid $grey-color-light;
@@ -8,6 +11,42 @@
 
   &:hover {
     background-color: $grey-color-light;
+  }
+
+  &__title {
+    display: flex;
+    flex-basis: 60%;
+    width: 100%;
+    color: black;
+    opacity: 1;
+    transition: 0.3s;
+
+    &:hover {
+      opacity: .8;
+
+    }
+
+  }
+
+  &__quantity {
+    flex-basis: 20%;
+    width: 100%;
+    font-size: 1.2em;
+
+  }
+
+  &__remove {
+    flex-basis: 10%;
+    width: 100%;
+    background-color: transparent;
+    transition: 0.3s;
+
+    &:hover {
+      cursor: pointer;
+      color: $base-color-light;
+    }
+
+
   }
 
 }

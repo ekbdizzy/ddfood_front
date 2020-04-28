@@ -19,7 +19,8 @@ class CartItemsList extends Component {
 
         return (
             itemsList.map((item) => {
-                return <CartItem item={item}
+                return <CartItem key={item.id}
+                                 item={item}
                                  allItemsRemoved={() => {
                                      allItemsRemoved(item.id)
                                  }}/>

@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import { connect } from 'react-redux';
+import React, {Component} from "react";
+import {connect} from 'react-redux';
 import ApiService from "../services/api-services";
 import {
     productsRequested,
@@ -7,7 +7,7 @@ import {
     productsError
 } from "../actions/actions";
 import ProductsList from "../components/products-list";
-import { bindActionCreators } from "redux";
+import {bindActionCreators} from "redux";
 import siteConfig from "../config";
 
 class ProductsListContainer extends Component {

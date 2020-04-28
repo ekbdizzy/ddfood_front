@@ -17,6 +17,8 @@ const updateItem = (item = {}, product, addQuantity) => {
 
 const updateItemsList = (state, itemId, quantity) => {
 
+    console.log(state);
+
     const {cart: {itemsList}, products: {productsList}} = state;
     const product = productsList.find(({id}) => id === itemId);
     const itemIndex = itemsList.findIndex(({id}) => id === itemId);

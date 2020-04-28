@@ -17,7 +17,10 @@ export default class ApiService {
         return await result.json();
     };
 
-
+    getProduct = async (productId) => {
+        const product = await this.getData(`${siteConfig.urls.getProductsUrl}${productId}`);
+        return await mapProductData(product)
+    };
 
 
     getClientIP = async () => {
@@ -43,6 +46,5 @@ export default class ApiService {
         const result = await this.getData(`/city/${city_id}`);
         return mapCityData(result);
     };
-
 
 }

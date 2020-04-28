@@ -1,7 +1,9 @@
 import React, {Component} from "react";
 import './checkout-items-details.scss';
 import {connect} from "react-redux";
-import {allItemsRemovedFromCart, itemAddedToCart, itemRemovedFromCart} from "../../actions/cart_actions";
+import {itemAddedToCart, itemRemovedFromCart} from "../../actions/cart_actions";
+import {bindActionCreators} from "redux";
+import {productsLoaded} from "../../actions/product_actions";
 
 class CheckoutItemsDetails extends Component {
 
@@ -16,7 +18,7 @@ class CheckoutItemsDetails extends Component {
             const {id, name, quantity} = item;
 
             return (
-                <div className='item'>
+                <div className='item' key={id}>
                     <div className='item__name'>
                         {name}
                     </div>
@@ -61,7 +63,6 @@ const mapDispatchToProps = (dispatch) => {
         removeFromCart: (id) => dispatch(itemRemovedFromCart(id)),
     }
 };
-
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(CheckoutItemsDetails);

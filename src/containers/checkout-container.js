@@ -1,13 +1,12 @@
 import React, {Component} from "react";
-import {cartLoaded, cartRequested } from "../actions/actions";
+import Checkout from "../components/checkout/checkout";
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
-import Cart from "../components/cart";
+import {cartLoaded, cartRequested} from "../actions/cart_actions";
 
-class CartItemsListContainer extends Component {
+class CheckoutContainer extends Component {
 
     componentDidMount() {
-
         const cart = localStorage.getItem('cart');
         const {
             cartLoaded,
@@ -26,9 +25,10 @@ class CartItemsListContainer extends Component {
         }
     }
 
-
     render() {
-        return <Cart/>
+        return (
+            <Checkout/>
+        )
     }
 }
 
@@ -46,5 +46,5 @@ const mapDispatchToProps = (dispatch) => {
     }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(CartItemsListContainer);
 
+export default connect(mapStateToProps, mapDispatchToProps)(CheckoutContainer);
