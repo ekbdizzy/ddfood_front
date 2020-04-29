@@ -3,6 +3,7 @@ import './header.scss';
 import logoIcon from '../../assets/img/logo_main.png';
 import {connect} from "react-redux";
 import {Link} from "react-router-dom";
+import Auth from "../auth";
 
 class Header extends Component {
 
@@ -34,7 +35,9 @@ class Header extends Component {
                         </div>
 
                         <div className='nav-link'>
-                            Вход/Регистрация
+                            <Link to='/auth'>
+                                Вход/Регистрация
+                            </Link>
                         </div>
                         <div>
                             <p className='nav-text'>Ваш город:</p>
@@ -48,6 +51,7 @@ class Header extends Component {
                         </div>
                     </nav>
                 </div>
+            <Auth/>
             </header>
         )
     }

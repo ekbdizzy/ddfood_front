@@ -1,38 +1,36 @@
-import React, { Component } from "react";
-import { Route, Switch } from 'react-router-dom';
+import React, {Component} from "react";
+import {Route, Switch} from 'react-router-dom';
 import './app.scss';
 import Header from "../header";
 import MainPage from "../main-page";
 import Footer from "../footer";
 import CheckoutContainer from "../../containers/checkout-container";
+import Auth from "../auth";
 
 
-export default class App extends Component {
+const App = () => {
+    return (
+        <div>
+            <Header/>
 
-    componentDidMount() {
-    }
+            <Switch>
 
-    render() {
+                <Route path='/checkout/'
+                       render={() => <CheckoutContainer/>}
+                       exact/>
 
-        return (
-            <div>
-                <Header/>
-
-                <Switch>
-                    <Route path='/checkout/'
-                           render={() => <CheckoutContainer/>}
-                           exact/>
-
-                    <Route path='/'
-                           component={MainPage}
-                    />
-                </Switch>
-                <Header/>
+                <Route path='/'
+                       component={MainPage}
+                />
 
 
-                {/*<Footer/>*/}
-            </div>
-        )
-    }
+            </Switch>
+            <Header/>
+
+
+            {/*<Footer/>*/}
+        </div>
+    )
 };
 
+export default App;
