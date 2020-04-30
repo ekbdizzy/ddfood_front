@@ -28,7 +28,6 @@
 }
 
 
-
 %button {
   font-family: Reg, sans-serif;
   font-size: 0.85em;
@@ -41,4 +40,29 @@
     opacity: 1;
     cursor: pointer;
   }
+}
+
+
+%input {
+  font-size: 1.1em;
+  color: $grey-color;
+  padding: 0.5em;
+  border-radius: 0.3em;
+  border-style: solid;
+  border-color: $grey-color-medium;
+  border-width: 1px;
+  width: 100%;
+  transition: 0.5s;
+
+  &:focus {
+    padding: calc(0.5em - 1px) calc(0.5em - 1px);
+    border-color: $grey-color;
+    border-width: 2px;
+  }
+}
+
+%label {
+  @extend %base-text;
+  color: white;
+  padding-bottom: 0.3em;
 }

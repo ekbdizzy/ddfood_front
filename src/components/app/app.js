@@ -11,11 +11,18 @@ import Auth from "../auth";
 class App extends Component {
 
     state = {
-        isActiveAuthForm: false,
+        isActiveAuthForm: true,
         isActiveMenu: false
     };
 
     toggleAuthForm = () => {
+        const {isActiveAuthForm} = this.state;
+
+        if (isActiveAuthForm) {
+            document.body.style.overflowY = "auto";
+        } else {
+            document.body.style.overflowY = "hidden";
+        }
         this.setState(({isActiveAuthForm}) => ({isActiveAuthForm: !isActiveAuthForm}))
     };
 

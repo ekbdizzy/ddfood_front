@@ -51,8 +51,6 @@ class ProductPage extends Component {
 
         const item = this.getItem(id, itemsList);
 
-        // console.log(id);
-        console.log('Itemslist', itemsList);
         return (
             <div key={id}
                  className='product'>

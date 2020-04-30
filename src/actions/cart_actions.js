@@ -32,7 +32,6 @@ const cartRequested = (cart) => {
 
 
 const cartLoaded = (itemsList) => {
-    console.log(itemsList);
     return {
         type: 'FETCH_CART_SUCCESS',
         payload: itemsList

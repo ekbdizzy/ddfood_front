@@ -36,9 +36,7 @@
     margin-top: 0.5em;
 
     label {
-      @extend %base-text;
-      color: white;
-      padding-bottom: 0.3em;
+      @extend %label;
 
     }
 
@@ -52,25 +50,12 @@
 
   .input {
     @extend %base-text;
-    font-size: 1.1em;
-    color: $grey-color;
-    padding: 0.5em;
-    border-radius: 0.3em;
-    border-style: solid;
-    border-color: $grey-color-medium;
-    border-width: 1px;
-    width: 100%;
-    transition: 0.5s;
+    @extend %input;
 
     &-half {
       width: 50%;
     }
 
-    &:focus {
-      padding: calc(0.5em - 1px) calc(0.5em - 1px);
-      border-color: $grey-color;
-      border-width: 2px;
-    }
   }
 
   .radio {
