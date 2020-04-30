@@ -7,8 +7,9 @@ import Auth from "../auth";
 
 class Header extends Component {
 
+
     render() {
-        const {city} = this.props;
+        const {city, toggleAuthForm} = this.props;
         return (
             <header className='header-wrapper'>
                 <div className='wrapper'>
@@ -34,10 +35,10 @@ class Header extends Component {
                             </Link>
                         </div>
 
-                        <div className='nav-link'>
-                            <Link to='/auth'>
-                                Вход/Регистрация
-                            </Link>
+                        <div className='nav-link'
+                             onClick={toggleAuthForm}
+                        >
+                            Вход/Регистрация
                         </div>
                         <div>
                             <p className='nav-text'>Ваш город:</p>
@@ -51,7 +52,6 @@ class Header extends Component {
                         </div>
                     </nav>
                 </div>
-            <Auth/>
             </header>
         )
     }

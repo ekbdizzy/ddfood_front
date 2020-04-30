@@ -1,0 +1,30 @@
+@import "../app/app";
+
+.auth {
+    position: absolute;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: $base-color;
+    z-index: 1000;
+    transition: 0.4s ease-in-out;
+    &-hidden {
+        top: -100vh;
+    }
+}
+
+
+#close_auth_form {
+    position: absolute;
+    color: white;
+    top: 0;
+    right: 0;
+    padding: 3em;
+    font-size: xx-large;
+    transition: 0.3s;
+
+    &:hover {
+        cursor: pointer;
+        transform: translateY(-0.05em) rotate(90deg);
+    }
+}

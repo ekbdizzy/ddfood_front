@@ -8,29 +8,51 @@ import CheckoutContainer from "../../containers/checkout-container";
 import Auth from "../auth";
 
 
-const App = () => {
-    return (
-        <div>
-            <Header/>
+class App extends Component {
 
-            <Switch>
+    state = {
+        isActiveAuthForm: false,
+        isActiveMenu: false
+    };
 
-                <Route path='/checkout/'
-                       render={() => <CheckoutContainer/>}
-                       exact/>
+    toggleAuthForm = () => {
+        this.setState(({isActiveAuthForm}) => ({isActiveAuthForm: !isActiveAuthForm}))
+    };
 
-                <Route path='/'
-                       component={MainPage}
+    toggleMenu = () => {
+        this.setState(({isActiveMenu}) => ({isActiveMenu: !isActiveMenu}))
+    };
+
+
+    render() {
+        return (
+            <div>
+                <Header toggleAuthForm={() => this.toggleAuthForm()}
+                />
+                <Auth
+                    toggleAuthForm={() => this.toggleAuthForm()}
+                    isActiveAuthForm={this.state.isActiveAuthForm}
                 />
 
+                <Switch>
 
-            </Switch>
-            <Header/>
+                    <Route path='/checkout/'
+                           render={() => <CheckoutContainer/>}
+                           exact/>
+
+                    <Route path='/'
+                           component={MainPage}
+                    />
 
 
-            {/*<Footer/>*/}
-        </div>
-    )
-};
+                </Switch>
+                {/*<Header/>*/}
+
+
+                {/*<Footer/>*/}
+            </div>
+        )
+    }
+}
 
 export default App;

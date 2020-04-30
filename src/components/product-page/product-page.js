@@ -4,6 +4,12 @@ import imageBlank from '../../assets/img/image_blank.jpg'
 import {connect} from "react-redux";
 
 class ProductPage extends Component {
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+
+    }
+
+
     setMeasure = (measure) => {
         switch (measure) {
             case 'гр.':

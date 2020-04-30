@@ -32,7 +32,8 @@ const MainPage = () => {
                     <Route path='/product/:id'
                            render={({match}) => {
                                const {id} = match.params;
-                               return <ProductPageContainer productId={id}
+                               return <ProductPageContainer
+                                   productId={id}
                                />
                            }}
                     />

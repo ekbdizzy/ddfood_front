@@ -29,9 +29,25 @@ class ProductPageContainer extends Component {
                 products_loaded(products);
                 this.setState({product: mapProductData(product)})
             })
-
-
     }
+
+    componentDidUpdate(prevProps) {
+        const {
+            productId,
+            products_loaded
+        } = this.props;
+
+
+        if (productId !== prevProps.productId) {
+            const {getData} = new ApiService();
+            getData(`${siteConfig.urls.getProductsUrl}${productId}`)
+                .then((product) => {
+                    const products = [product];
+                    products_loaded(products);
+                    this.setState({product: mapProductData(product)})
+                })
+        }
+    };
 
 
     render() {
