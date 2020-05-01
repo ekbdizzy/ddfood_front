@@ -11,9 +11,9 @@ import Auth from "../auth";
 class App extends Component {
 
     state = {
-        isActiveAuthForm: true,
         isActiveMenu: false
     };
+
 
     toggleAuthForm = () => {
         const {isActiveAuthForm} = this.state;
@@ -36,12 +36,15 @@ class App extends Component {
             <div>
                 <Header toggleAuthForm={() => this.toggleAuthForm()}
                 />
-                <Auth
-                    toggleAuthForm={() => this.toggleAuthForm()}
-                    isActiveAuthForm={this.state.isActiveAuthForm}
-                />
+
 
                 <Switch>
+
+                    <Route path='/auth/'
+                           render={() => <Auth
+                               toggleAuthForm={() => this.toggleAuthForm()}
+                           />}
+                           exact/>
 
                     <Route path='/checkout/'
                            render={() => <CheckoutContainer/>}

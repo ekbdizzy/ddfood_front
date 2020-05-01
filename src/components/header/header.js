@@ -3,13 +3,72 @@ import './header.scss';
 import logoIcon from '../../assets/img/logo_main.png';
 import {connect} from "react-redux";
 import {Link} from "react-router-dom";
-import Auth from "../auth";
+import {bindActionCreators} from "redux";
+import {setDefaultUser} from "../../actions/user_actions";
 
 class Header extends Component {
 
+    logout = () => {
+        const {set_default_user} = this.props;
+        localStorage.removeItem('token');
+        set_default_user()
+    };
+
+    showBonuses = (user) => {
+        const {isAuthenticated, bonuses} = user;
+        if (isAuthenticated) {
+            return (
+                <div>
+                    <Link to={'/bonus'}
+                          className="nav-link">
+                        {`Бонусы (${bonuses})`}
+                    </Link>
+                </div>
+            )
+        } else {
+            return (
+                <div>
+                    <Link to={'/bonus'}
+                          className="nav-link">
+                        Бонусная программа
+                    </Link>
+                </div>
+            )
+        }
+    };
+
+    showAuthBlock = (isAuthenticated) => {
+        if (isAuthenticated) {
+            return (
+                <>
+                    <div>
+                        <Link to={'/auth'}
+                              className='nav-link'>
+                            Личный кабинет
+                        </Link>
+                    </div>
+
+                    < div
+                        className='nav-link'
+                        onClick={this.logout}>
+                        Выйти
+                    </div>
+                </>
+            )
+        } else {
+            return (
+                <div>
+                    <Link to={'/auth'}
+                          className='nav-link'>
+                        Вход/Регистрация
+                    </Link>
+                </div>
+            )
+        }
+    };
 
     render() {
-        const {city, toggleAuthForm} = this.props;
+        const {city, user} = this.props;
         return (
             <header className='header-wrapper'>
                 <div className='wrapper'>
@@ -28,18 +87,10 @@ class Header extends Component {
                             </Link>
                         </div>
 
-                        <div>
-                            <Link to={'/bonus'}
-                                  className="nav-link">
-                                Бонусная программа
-                            </Link>
-                        </div>
+                        {this.showBonuses(user)}
 
-                        <div className='nav-link'
-                             onClick={toggleAuthForm}
-                        >
-                            Вход/Регистрация
-                        </div>
+                        {this.showAuthBlock(user.isAuthenticated)}
+
                         <div>
                             <p className='nav-text'>Ваш город:</p>
                             <p className='nav-city'>{city.name}</p>
@@ -55,12 +106,20 @@ class Header extends Component {
             </header>
         )
     }
-};
+}
 
-const mapStateToProps = ({city}) => {
+const mapStateToProps = ({city, user}) => {
     return {
-        city
+        city,
+        user
     }
 };
 
-export default connect(mapStateToProps)(Header);
+const mapDispatchToProps = (dispatch) => {
+    return {
+        set_default_user: bindActionCreators(setDefaultUser, dispatch)
+    }
+};
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

@@ -44,7 +44,25 @@ const mapCityData = (cityData) => {
 };
 
 
+const mapUserData = (userData) => {
+    const {
+            id,
+            full_name,
+            email,
+            phone,
+            bonuses
+        } = userData;
+    return {
+        id,
+        fullName: full_name,
+        email,
+        phone,
+        bonuses
+    }
+};
+
 export {
     mapProductData,
     mapCityData,
+    mapUserData
 }

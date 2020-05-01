@@ -9,6 +9,11 @@ import {
     cartLoaded
 } from './cart_actions';
 
+import {
+    setDefaultUser,
+    setUserData,
+} from "./user_actions";
+
 
 export {
     productsRequested,
@@ -27,5 +32,8 @@ export {
 
     cityRequested,
     cityLoaded,
+
+    setDefaultUser,
+    setUserData,
 }
 

@@ -1,20 +1,34 @@
 import React, {Component} from "react";
 import ApiService from "../services/api-services";
+import AuthApiService from "../services/auth-api-service";
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import App from "../components/app";
 import siteConfig from "../config";
 
-import {cityRequested, cityLoaded} from "../actions/actions";
+import {
+    cityRequested,
+    cityLoaded,
+    setDefaultUser,
+    setUserData,
+} from "../actions/actions";
+import {mapUserData} from "../services/mappers";
 
 
 class AppContainer extends Component {
 
     componentDidMount() {
 
-        const {city_requested, city_loaded} = this.props;
+        const {
+            city_requested,
+            city_loaded,
+            set_default_user,
+            set_user_data,
+        } = this.props;
+
         const {getClientIP, getClientCity, getCity} = new ApiService();
 
+        // request city
         city_requested();
         const sessionCityId = sessionStorage.getItem('city_id');
         if (sessionCityId !== null) {
@@ -44,7 +58,28 @@ class AppContainer extends Component {
                 })
         }
 
+        // request user
 
+        const token = localStorage.getItem('token');
+        if (!token) {
+            set_default_user();
+        } else {
+            const {getUserData} = new AuthApiService();
+            getUserData(token)
+                .then((userData) => {
+                    set_user_data({...mapUserData(userData), token: token});
+                })
+                .catch((error) => {
+                    console.log(error);
+                    localStorage.removeItem('token');
+                    set_default_user();
+                });
+        }
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        const {user} = this.props;
+        console.log(user);
     }
 
 
@@ -54,14 +89,16 @@ class AppContainer extends Component {
 }
 
 
-const mapStateToProps = ({city}) => {
-    return {city}
+const mapStateToProps = ({city, user}) => {
+    return {city, user}
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
         city_requested: bindActionCreators(cityRequested, dispatch),
-        city_loaded: bindActionCreators(cityLoaded, dispatch)
+        city_loaded: bindActionCreators(cityLoaded, dispatch),
+        set_default_user: bindActionCreators(setDefaultUser, dispatch),
+        set_user_data: bindActionCreators(setUserData, dispatch)
     }
 };
 

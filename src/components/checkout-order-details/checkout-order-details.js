@@ -203,7 +203,7 @@ const Delivery = () => {
                            name="pay_method"
                            type="radio"
                            id="cash"
-                           // checked
+                        // checked
                         // onChange={(e) => this.handleChangeName(e)}
                     />
                     <label htmlFor='cash' className='radio__pay-label'>Наличными курьеру</label>

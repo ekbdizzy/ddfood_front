@@ -1,11 +1,8 @@
 @import "../app/app";
 
 .auth-block {
-  position: absolute;
   top: 0;
   width: 100%;
-  height: 100vh;
-  background-color: $base-color;
   z-index: 1000;
   transition: 0.4s ease-in-out;
 
@@ -30,14 +27,13 @@
 }
 
 .auth {
-  padding-top: 10%;
+  padding-top: 5%;
   position: absolute;
   display: flex;
   flex-direction: column;
   justify-content: start;
   align-items: center;
   width: 100%;
-  height: 100vh;
 
   &__form {
   width: 70%;
