@@ -6,6 +6,7 @@ import {bindActionCreators} from "redux";
 import {connect} from "react-redux";
 import {setUserData, setDefaultUser} from "../../actions/user_actions";
 import {mapUserData} from "../../services/mappers";
+import LoginForm from "./login-form";
 
 class Auth extends Component {
 
@@ -34,7 +35,6 @@ class Auth extends Component {
             }
         });
     };
-
 
     render() {
         const {
@@ -74,100 +74,46 @@ class Auth extends Component {
 }
 
 
-const LoginForm = ({set_user_data, set_default_user, user}) => {
-
-        const {obtainToken, getUserData} = new AuthApiService();
-
-        const postLoginForm = (e) => {
-            e.preventDefault();
-            const formData = new FormData(e.target);
-            const body = {};
-            formData.forEach((value, key) => {
-                body[key] = value
-            });
-
-            obtainToken(body)
-            // authApiService.updateUser(token)
-                .then((result) => {
-                    localStorage.setItem('token', result['token']);
-                    const {token} = result;
-                    getUserData(token)
-                        .then((userData) => {
-                            set_user_data({...mapUserData(userData), token});
-                        })
-                        .catch((error) => {
-                            console.log(error);
-                            localStorage.removeItem('token');
-                            set_default_user();
-                        })
-                })
-                .catch((e) => {
-                    console.log(e);
-                });
-        };
-
-        if (user.isAuthenticated) {
-            return <Redirect to='/'/>
-        }
-
-        return (
-            <Fragment>
-                <form className='auth__form'
-                      action=''
-                      onSubmit={(e) => {
-                          postLoginForm(e)
-                      }}>
-
-
-                    <div id='login-username'>
-                        <label className='auth__label'>Телефон или E-mail:</label>
-                        <input className='auth__input'
-                               name='email'
-                               id='reg-email'
-                               type='text'
-                               autoComplete='off'
-                               placeholder='8XXXXXXXXXX | mail@mail.ru'
-                        />
-                    </div>
-
-                    <div id='login-password'>
-                        <label className='auth__label'>Пароль:</label>
-                        <input className='auth__input'
-                               name='password'
-                               type='password'
-                               autoComplete="off"
-                               placeholder=''
-                        />
-
-                    </div>
-                    {/*<div className='auth__error'>*/}
-                    {/*    error*/}
-                    {/*</div>*/}
-                    <a href='/'
-                       className='link-white'
-                    > Воccтановить пароль</a>
-                    <button
-                        className='auth__submit'
-                        type='submit'>
-                        Войти
-                    </button>
-
-
-                </form>
-            </Fragment>
-        )
-    }
-;
-
 const RegistrationForm = () => {
+
+    const {createUser} = new AuthApiService();
+
+    const postRegistrationForm = (e) => {
+        e.preventDefault();
+        const formData = new FormData(e.target);
+        const body = {};
+        formData.forEach((value, key) => {
+            body[key] = value
+        });
+
+        console.log(body);
+
+
+        createUser(body)
+            .then((result) => {
+                console.log(result);
+                // TODO
+                // obtain token
+                // authenticate user
+                // redirect to page "registered"
+            }).catch((error) => {
+            console.log(error)
+        });
+    };
+
+
     return (
         <Fragment>
-            <form className='auth__form'>
+            <form className='auth__form'
+                  onSubmit={(e) => {
+                      postRegistrationForm(e)
+                  }}>
 
                 <div id='full-name'>
                     <label className='auth__label'>Ваше имя:</label>
                     <input className='auth__input'
                            type='text'
+                           name='full_name'
                            autoComplete="off"
                            placeholder=''
                     />
@@ -177,6 +123,7 @@ const RegistrationForm = () => {
                     <label className='auth__label'>Электронная почта:</label>
                     <input className='auth__input'
                            type='email'
+                           name='email'
                            autoComplete="off"
                            placeholder='mail@mail.ru'
                     />
@@ -186,6 +133,7 @@ const RegistrationForm = () => {
                     <label className='auth__label'>Номер телефона:</label>
                     <input className='auth__input'
                            type='phone'
+                           name='phone'
                            autoComplete="off"
                            placeholder='8-XXX-XXX-XX-XX'
                     />
@@ -195,6 +143,7 @@ const RegistrationForm = () => {
                     <label className='auth__label'>Пароль:</label>
                     <input className='auth__input'
                            type='password'
+                           name='password'
                            autoComplete="off"
                            placeholder=''
                     />
@@ -204,6 +153,7 @@ const RegistrationForm = () => {
                     <label className='auth__label'>Повторите пароль:</label>
                     <input className='auth__input'
                            type='password'
+                           name='retry-password'
                            autoComplete="off"
                            placeholder=''
                     />
@@ -214,10 +164,8 @@ const RegistrationForm = () => {
 
                 <button
                     className='auth__submit'
-                    onClick={(e) => {
-                        e.preventDefault();
-                        console.log('Submit registration form')
-                    }}>Зарегистрироваться
+                    type='submit'>
+                    Зарегистрироваться
                 </button>
             </form>
         </Fragment>

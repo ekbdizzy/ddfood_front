@@ -29,6 +29,19 @@ class AuthApiService {
             });
         return await result.json()
     };
+
+    createUser = async (body) => {
+        const result = await fetch(
+            `${siteConfig.urls.baseUrl}/user/create/`,
+            {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json;charset=utf-8'
+                },
+                body: JSON.stringify(body)
+            });
+        return await result.json()
+    }
 }
 
 export default AuthApiService;

@@ -79,9 +79,7 @@ class AppContainer extends Component {
 
     componentDidUpdate(prevProps, prevState, snapshot) {
         const {user} = this.props;
-        console.log(user);
     }
-
 
     render() {
         return <App/>
