@@ -1,5 +1,6 @@
 import React, {Fragment} from "react";
 import {Link} from "react-router-dom";
+import ApiService from "../../services/api-services";
 
 const PromoCodeNotAllow = ({totalPrice}) => {
     return (
@@ -18,15 +19,38 @@ const PromoCodeNotAllow = ({totalPrice}) => {
 
 
 const PromoCodeIsNotActive = ({totalPrice}) => {
+
+    const requestPromoCode = (e) => {
+        e.preventDefault();
+        const formData = new FormData(e.target);
+        const body = {};
+        formData.forEach((value, key) => {
+            body[key] = value
+        });
+        const {getPromoCodeDiscount} = new ApiService();
+        getPromoCodeDiscount(body)
+            .then((result) => {
+                console.log(result.discount);
+            })
+
+        // we get promo code discount and now we should go far
+
+    };
+
     return (
         <Fragment>
-            <form className='promo-code'>
+
+            <form className='promo-code'
+                  onSubmit={(e) => {
+                      requestPromoCode(e)
+                  }}>
                 <div className='promo-code__label'>
                     Промокод:
                 </div>
                 <div>
                     <input
                         className='promo-code__input'
+                        name='code'
                         type='text'/>
                 </div>
                 <button type='submit'

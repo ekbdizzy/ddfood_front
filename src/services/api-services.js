@@ -47,4 +47,17 @@ export default class ApiService {
         return mapCityData(result);
     };
 
+    getPromoCodeDiscount = async (body) => {
+        const result = await fetch(`${siteConfig.urls.baseUrl}${siteConfig.urls.getPromoCodeSale}`,
+            {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    // 'Authorization': `Token ${this.DaDataToken}`
+                },
+                body: JSON.stringify(body)
+            }
+        );
+        return await result.json();
+    }
 }
