@@ -25,6 +25,7 @@ class Checkout extends Component {
 
                         <CheckoutPromoCode
                             cart={cart}
+                            isAuthenticated={this.props.isAuthenticated}
                         />
                     </div>
 
@@ -38,9 +39,10 @@ class Checkout extends Component {
     }
 }
 
-const mapStateToProps = ({cart}) => {
+const mapStateToProps = ({cart, user: {isAuthenticated}}) => {
     return {
-        cart
+        cart,
+        isAuthenticated
     }
 };
 
