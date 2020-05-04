@@ -18,28 +18,10 @@ const PromoCodeNotAllow = ({totalPrice}) => {
 };
 
 
-const PromoCodeIsNotActive = ({totalPrice}) => {
-
-    const requestPromoCode = (e) => {
-        e.preventDefault();
-        const formData = new FormData(e.target);
-        const body = {};
-        formData.forEach((value, key) => {
-            body[key] = value
-        });
-        const {getPromoCodeDiscount} = new ApiService();
-        getPromoCodeDiscount(body)
-            .then((result) => {
-                console.log(result.discount);
-            })
-
-        // we get promo code discount and now we should go far
-
-    };
+const PromoCodeIsNotActive = ({totalPrice, promoCodeError, requestPromoCode}) => {
 
     return (
         <Fragment>
-
             <form className='promo-code'
                   onSubmit={(e) => {
                       requestPromoCode(e)
@@ -51,8 +33,11 @@ const PromoCodeIsNotActive = ({totalPrice}) => {
                     <input
                         className='promo-code__input'
                         name='code'
-                        type='text'/>
+                        type='text'
+                        required='on'
+                    />
                 </div>
+                <span className='promo-code__error'>{promoCodeError}</span>
                 <button type='submit'
                         className="promo-code__submit">
                     Применить
@@ -64,19 +49,17 @@ const PromoCodeIsNotActive = ({totalPrice}) => {
                     К оплате: {totalPrice} руб.
                 </div>
             </div>
-
         </Fragment>
     )
 };
 
-const PromoCodeIsActive = ({totalPrice}) => {
+const PromoCodeIsActive = ({totalPrice, removePromoCode}) => {
     return (
         <Fragment>
             <div className='promo-code__label'>
                 Промокод: <span>misha10 (Cкидка: 10%)</span>
                 <div className='promo-code__remove'
-                     onClick={() => console.log('Remove promo code')}
-                >
+                     onClick={removePromoCode}>
                     Удалить промокод
                 </div>
             </div>

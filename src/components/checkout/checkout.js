@@ -23,10 +23,12 @@ class Checkout extends Component {
                         </Link>
                         <CheckoutItemsDetails/>
 
-                        <CheckoutPromoCode
-                            cart={cart}
-                            isAuthenticated={this.props.isAuthenticated}
-                        />
+                        <section className='checkout-promo-code'>
+                            <CheckoutPromoCode
+                                cart={cart}
+                                isAuthenticated={this.props.isAuthenticated}
+                            />
+                        </section>
                     </div>
 
                     <div className='checkout__left-side'>

@@ -1,14 +1,6 @@
 @import '../app/app';
 
 
-.checkout-promo-code {
-  display: flex;
-  flex-direction: row;
-  background-color: $grey-color-light;
-  padding: 2em;
-  width: 100%;
-  justify-content: space-between;
-}
 
 .promo-code {
   display: flex;
@@ -36,6 +28,11 @@
       border-color: $grey-color-medium;
       border-width: 2px;
     }
+  }
+
+  &__error {
+    @extend %base-text;
+    color: $base-color-light;
   }
 
   &__remove {

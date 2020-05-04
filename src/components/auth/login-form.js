@@ -16,7 +16,6 @@ const LoginForm = ({set_user_data, set_default_user, user}) => {
         });
 
         obtainToken(body)
-        // authApiService.updateUser(token)
             .then((result) => {
                 localStorage.setItem('token', result['token']);
                 const {token} = result;
@@ -50,6 +49,7 @@ const LoginForm = ({set_user_data, set_default_user, user}) => {
 
                 <div id='login-username'>
                     <label className='auth__label'>Телефон или E-mail:</label>
+                    {/*<span>error</span>*/}
                     <input className='auth__input'
                            name='email'
                            id='reg-email'
@@ -67,7 +67,6 @@ const LoginForm = ({set_user_data, set_default_user, user}) => {
                            autoComplete="off"
                            placeholder=''
                     />
-
                 </div>
                 {/*<div className='auth__error'>*/}
                 {/*    error*/}
