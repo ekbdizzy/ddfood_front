@@ -78,7 +78,33 @@ class AppContainer extends Component {
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        const {user} = this.props;
+
+        const {
+            set_default_user,
+            set_user_data,
+            user
+        } = this.props;
+
+
+        // if (prevProps.user !== user) {
+        //
+        //     const token = localStorage.getItem('token');
+        //     if (!token) {
+        //         set_default_user();
+        //
+        //     } else {
+        //         const {getUserData} = new AuthApiService();
+        //         getUserData(token)
+        //             .then((userData) => {
+        //                 set_user_data({...mapUserData(userData), token: token});
+        //             })
+        //             .catch((error) => {
+        //                 console.log(error);
+        //                 localStorage.removeItem('token');
+        //                 set_default_user();
+        //             });
+        //     }
+        // }
     }
 
     render() {

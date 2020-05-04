@@ -4,7 +4,7 @@ const DefaultUser = {
     token: null,
     fullName: '',
     email: '',
-    phone: '',
+    phone: 7,
     bonuses: 0
 };
 

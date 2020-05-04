@@ -37,7 +37,6 @@
 
     label {
       @extend %label;
-
     }
 
     h1 {
@@ -82,15 +81,17 @@
       &:hover {
         cursor: pointer;
       }
-
-
     }
-
-
   }
 
   .relative {
     position: relative;
+  }
+
+  .delivery-info {
+    @extend %base-text;
+    font-size: 1em;
+    color: white;
   }
 
   hr {

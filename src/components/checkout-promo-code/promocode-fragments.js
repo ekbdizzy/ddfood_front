@@ -23,9 +23,7 @@ const PromoCodeIsNotActive = ({totalPrice, promoCodeError, requestPromoCode}) =>
     return (
         <Fragment>
             <form className='promo-code'
-                  onSubmit={(e) => {
-                      requestPromoCode(e)
-                  }}>
+                  onSubmit={(e) => requestPromoCode(e)}>
                 <div className='promo-code__label'>
                     Промокод:
                 </div>
@@ -53,27 +51,30 @@ const PromoCodeIsNotActive = ({totalPrice, promoCodeError, requestPromoCode}) =>
     )
 };
 
-const PromoCodeIsActive = ({totalPrice, removePromoCode}) => {
+const PromoCodeIsActive = ({totalPrice, removePromoCode, promoCode}) => {
+
+
+    let totalDiscount = Math.floor(totalPrice * promoCode.discount * 0.01);
+
     return (
         <Fragment>
             <div className='promo-code__label'>
-                Промокод: <span>misha10 (Cкидка: 10%)</span>
+                Промокод: <span>{promoCode.code} (Cкидка: {promoCode.discount}%)</span>
                 <div className='promo-code__remove'
                      onClick={removePromoCode}>
                     Удалить промокод
                 </div>
             </div>
 
-
             <div className='checkout-price'>
                 <div className='checkout-price__without-sale'>
-                    Цена без скидки: 2200 руб.
+                    Цена без скидки: {totalPrice} руб.
                 </div>
                 <div className='checkout-price__sale'>
-                    Скидка: 200 руб.
+                    Скидка: {totalDiscount} руб.
                 </div>
                 <div className='checkout-price__total'>
-                    К оплате: {totalPrice} руб.
+                    К оплате: {totalPrice - totalDiscount} руб.
                 </div>
             </div>
         </Fragment>

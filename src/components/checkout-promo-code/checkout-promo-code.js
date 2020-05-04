@@ -76,7 +76,8 @@ class CheckoutPromoCode extends Component {
         if (promoCode) {
             return <PromoCodeIsActive
                 totalPrice={totalPrice}
-                removePromoCode={this.removePromoCode}/>
+                removePromoCode={this.removePromoCode}
+                promoCode={promoCode}/>
         }
 
         return <PromoCodeIsNotActive
@@ -84,7 +85,6 @@ class CheckoutPromoCode extends Component {
             promoCodeError={promoCodeError}
             requestPromoCode={this.requestPromoCode}/>
     }
-
 }
 
 

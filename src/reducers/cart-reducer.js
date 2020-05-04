@@ -83,7 +83,7 @@ const updateCart = (state, action) => {
             itemsList: [],
             loading: false,
             totalQuantity: 0,
-            totalPrice: 0
+            totalPrice: 0,
         }
     }
 

@@ -34,16 +34,12 @@ class App extends Component {
     render() {
         return (
             <div>
-                <Header toggleAuthForm={() => this.toggleAuthForm()}
-                />
-
+                <Header toggleAuthForm={() => this.toggleAuthForm()}/>
 
                 <Switch>
-
                     <Route path='/auth/'
                            render={() => <Auth
-                               toggleAuthForm={() => this.toggleAuthForm()}
-                           />}
+                               toggleAuthForm={() => this.toggleAuthForm()}/>}
                            exact/>
 
                     <Route path='/checkout/'
@@ -51,13 +47,9 @@ class App extends Component {
                            exact/>
 
                     <Route path='/'
-                           component={MainPage}
-                    />
-
+                           component={MainPage}/>
 
                 </Switch>
-                {/*<Header/>*/}
-
 
                 {/*<Footer/>*/}
             </div>

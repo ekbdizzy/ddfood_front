@@ -38,11 +38,20 @@ const cartLoaded = (itemsList) => {
     }
 };
 
+const discountAdded = (discount) => {
+    return {
+        type: 'DISCOUNT_ADDED',
+        payload: discount
+    }
+
+};
+
 
 export {
     itemAddedToCart,
     itemRemovedFromCart,
     allItemsRemovedFromCart,
     cartRequested,
-    cartLoaded
+    cartLoaded,
+    discountAdded
 }

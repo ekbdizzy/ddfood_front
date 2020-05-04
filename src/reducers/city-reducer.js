@@ -1,14 +1,14 @@
 const defaultCity = {
     name: '',
-    query_id: null,
+    city_id: null,
     address: null,
     phone: null,
-    working_time: null,
-    delivery_info: null,
-    minimal_price_for_delivery: 0,
-    delivery_price: null,
-    is_self_delivery: false,
-    self_delivery_info: null
+    workingTime: null,
+    deliveryInfo: null,
+    minimalPriceForDelivery: 0,
+    deliveryPrice: null,
+    isSelfDelivery: false,
+    selfDeliveryInfo: null
 };
 
 
@@ -23,15 +23,15 @@ const updateCity = (state, action) => {
             case 'FETCH_CITY_REQUEST':
                 return {
                     name: 'Загрузка',
-                    query_id: null,
+                    city_id: null,
                     address: null,
                     phone: null,
-                    working_time: null,
-                    delivery_info: null,
-                    minimal_price_for_delivery: 0,
-                    delivery_price: null,
-                    is_self_delivery: false,
-                    self_delivery_info: null
+                    workingTime: null,
+                    deliveryInfo: null,
+                    minimalPriceForDelivery: 0,
+                    deliveryPrice: null,
+                    isSelfDelivery: false,
+                    selfDeliveryInfo: null
                 };
 
 
