@@ -6,6 +6,7 @@ import MainPage from "../main-page";
 import Footer from "../footer";
 import CheckoutContainer from "../../containers/checkout-container";
 import Auth from "../auth";
+import OrderCreated from "../order-created";
 
 
 class App extends Component {
@@ -33,6 +34,11 @@ class App extends Component {
                     <Route path='/checkout/'
                            component={CheckoutContainer}
                            exact/>
+
+                    <Route path='/order-created/'
+                           component={OrderCreated}
+                           exact/>
+
 
                     <Route path='/'
                            component={MainPage}/>

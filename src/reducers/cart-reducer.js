@@ -1,3 +1,11 @@
+const emptyCart = {
+    itemsList: [],
+    loading: false,
+    totalQuantity: 0,
+    totalPrice: 0,
+};
+
+
 const updateItem = (item = {}, product, addQuantity) => {
     const {
         id = product.id,
@@ -79,15 +87,15 @@ const updateOrder = (state, itemId, quantity) => {
 const updateCart = (state, action) => {
 
     if (state === undefined) {
-        return {
-            itemsList: [],
-            loading: false,
-            totalQuantity: 0,
-            totalPrice: 0,
-        }
+        return emptyCart;
     }
 
     switch (action.type) {
+
+        case 'REMOVE_CART':
+            localStorage.removeItem('cart');
+            return emptyCart;
+
         case 'FETCH_CART_REQUEST':
             return {
                 itemsList: [],

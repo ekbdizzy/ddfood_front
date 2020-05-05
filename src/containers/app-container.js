@@ -67,10 +67,17 @@ class AppContainer extends Component {
             const {getUserData} = new AuthApiService();
             getUserData(token)
                 .then((userData) => {
+
+                    if (userData.detail) {
+                        console.log(userData);
+                        localStorage.removeItem('token');
+                        set_default_user();
+                    }
+
                     set_user_data({...mapUserData(userData), token: token});
                 })
                 .catch((error) => {
-                    console.log(error);
+                    console.log(error, 'sss');
                     localStorage.removeItem('token');
                     set_default_user();
                 });

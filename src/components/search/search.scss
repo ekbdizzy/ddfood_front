@@ -1,0 +1,36 @@
+@import '../app/app';
+
+.search {
+  margin: 0 1em 1em 1em;
+
+  .form {
+    width: 100%;
+  }
+
+  .input {
+    padding: 0.7em;
+    border-radius: 0.3em;
+    width: 100%;
+  }
+
+  &__list {
+    width: available;
+    display: block;
+    position: absolute;
+    background-color: white;
+    padding: 1em;
+
+    li {
+      padding: 1em;
+      transition: 0.3s;
+
+      &:hover {
+        background-color: $grey-color-light;
+      }
+
+    }
+
+  }
+
+
+}

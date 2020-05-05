@@ -7,6 +7,7 @@ import CategoriesContainer from "../../containers/categories-list-container";
 import ProductsListContainer from "../../containers/products-list-container";
 import CartItemsListContainer from "../../containers/cart-items-list-container";
 import ProductPageContainer from "../../containers/product-page-container";
+import Search from "../search";
 
 const MainPage = () => {
 
@@ -19,6 +20,9 @@ const MainPage = () => {
                 </div>
 
                 <div className='main'>
+
+                    <Search/>
+
                     <Route path='/'
                            component={ProductsListContainer}
                            exact/>

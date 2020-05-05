@@ -54,7 +54,6 @@ const LoginForm = ({set_user_data, set_default_user, user}) => {
                       postLoginForm(e)
                   }}>
 
-
                 <div id='login-username'>
                     <label className='auth__label'>E-mail:</label>
                     {/*<span>error</span>*/}

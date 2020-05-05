@@ -6,7 +6,8 @@ import {
     itemRemovedFromCart,
     allItemsRemovedFromCart,
     cartRequested,
-    cartLoaded
+    cartLoaded,
+    removeCart
 } from './cart_actions';
 
 import {
@@ -29,6 +30,7 @@ export {
     allItemsRemovedFromCart,
     cartLoaded,
     cartRequested,
+    removeCart,
 
     cityRequested,
     cityLoaded,

@@ -3,7 +3,7 @@ import siteConfig from "../config";
 class OrderApiServices {
 
 
-    createOrder = async (body) => {
+    postCreateOrder = async (body) => {
         const result = await fetch(`${siteConfig.urls.baseUrl}${siteConfig.urls.createOrderUrl}`,
             {
                 method: 'POST',

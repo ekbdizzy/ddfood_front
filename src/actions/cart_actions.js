@@ -1,5 +1,4 @@
 const itemAddedToCart = (productId) => {
-
     return {
         type: 'ITEM_ADDED_TO_CART',
         payload: productId
@@ -46,6 +45,12 @@ const discountAdded = (discount) => {
 
 };
 
+const removeCart = () => {
+    return {
+        type: 'REMOVE_CART',
+        payload: ''
+    }
+};
 
 export {
     itemAddedToCart,
@@ -53,5 +58,6 @@ export {
     allItemsRemovedFromCart,
     cartRequested,
     cartLoaded,
-    discountAdded
+    discountAdded,
+    removeCart
 }

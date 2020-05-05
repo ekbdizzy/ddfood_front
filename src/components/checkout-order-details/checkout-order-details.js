@@ -4,12 +4,16 @@ import siteConfig from "../../config";
 import {connect} from "react-redux";
 import maskPhone from "../../services/mask-phone";
 import OrderApiServices from "../../services/order-api-services";
-
+import {Redirect} from "react-router";
+import {bindActionCreators} from "redux";
+import {removeCart} from "../../actions/actions";
+import {UserDataForm, SelfDelivery, Delivery} from './checkout-order-forms';
 
 class CheckoutOrderDetails extends Component {
 
     state = {
         isDelivery: false,
+        orderCreated: false,
         user: {
             fullName: '',
             phone: '',
@@ -43,7 +47,6 @@ class CheckoutOrderDetails extends Component {
 
 
     handleChangeName(e) {
-
         this.setState({user: {fullName: e.target.value}});
     }
 
@@ -86,28 +89,34 @@ class CheckoutOrderDetails extends Component {
 
     createOrder = (e) => {
         e.preventDefault();
-
-        const {createOrder} = new OrderApiServices();
-        const {cart: {totalPrice, itemsList}} = this.props;
+        const {postCreateOrder} = new OrderApiServices();
+        const {cart: {totalPrice, itemsList}, remove_cart} = this.props;
         const formData = new FormData(e.target);
         const orderDetails = {};
-        formData.forEach((value, key) => {
-            orderDetails[key] = value;
-        });
+        formData.forEach(
+            (value, key) => {
+                orderDetails[key] = value;
+            });
         orderDetails.totalPrice = totalPrice;
         orderDetails.itemsList = itemsList;
         this.addPromoCodeToOrder(orderDetails);
         this.addCityToOrder(orderDetails);
-        createOrder(orderDetails)
+
+        postCreateOrder(orderDetails)
             .then((result) => {
                 console.log(result);
+                remove_cart();
+                this.setState({orderCreated: true})
             })
-
     };
 
     render() {
-        const {user, isDelivery} = this.state;
+        const {user, isDelivery, orderCreated} = this.state;
         const {city: {selfDeliveryInfo, deliveryInfo}} = this.props;
+
+        if (orderCreated) {
+            return <Redirect to='/order-created/'/>
+        }
 
         return (
             <div className='checkout-form'>
@@ -145,7 +154,9 @@ class CheckoutOrderDetails extends Component {
                         </div>
                     </div>
 
-                    {isDelivery ? <Delivery deliveryInfo={deliveryInfo}/> :
+                    {isDelivery ?
+                        <Delivery deliveryInfo={deliveryInfo}/>
+                        :
                         <SelfDelivery selfDeliveryInfo={selfDeliveryInfo}/>}
 
                     <div className="checkout-form__field grid-4">
@@ -168,148 +179,6 @@ class CheckoutOrderDetails extends Component {
     }
 }
 
-const UserDataForm = (
-    {
-        user: {fullName, phone, email},
-        handleChangeName,
-        handleChangePhone,
-        handleChangeEmail
-    }) => {
-    return <Fragment>
-        <div className="checkout-form__field grid-4">
-            <label>Ваше имя:</label>
-            <input className="input"
-                   value={fullName}
-                   name="fullName"
-                   type="text"
-                   id="full_name"
-                   autoComplete="off"
-                   onChange={(e) => handleChangeName(e)}
-
-            />
-        </div>
-
-        <div className="checkout-form__field grid-2">
-            <label>Ваш телефон:</label>
-            <input className="input"
-                   value={phone}
-                   name="phone"
-                   type="phone"
-                   id="phone"
-                   autoComplete="off"
-                   onChange={(e) => handleChangePhone(e)}
-            />
-        </div>
-
-        <div className="checkout-form__field grid-2">
-            <label>Электронная почта:</label>
-            <input className="input"
-                   value={email}
-                   name="email"
-                   type="email"
-                   id="email"
-                   autoComplete="off"
-                   onChange={(e) => handleChangeEmail(e)}
-            />
-        </div>
-    </Fragment>
-};
-
-const SelfDelivery = ({selfDeliveryInfo}) => {
-    return (
-        <Fragment>
-            <div className='grid-4 delivery-info'>
-                {selfDeliveryInfo}
-            </div>
-
-            <div className='map grid-4'>
-            </div>
-        </Fragment>
-    )
-};
-
-
-const Delivery = ({deliveryInfo}) => {
-    return (
-        <Fragment>
-            <div className='grid-4 delivery-info'>
-                {deliveryInfo}
-            </div>
-            <div className="checkout-form__field grid-4">
-                <label>Адрес доставки:</label>
-                <input className="input"
-                    // value=''
-                       name="address"
-                       type="text"
-                       id="full_name"
-                       autoComplete="off"
-                />
-            </div>
-
-            <div className="checkout-form__field grid-1">
-                <label>Подъезд:</label>
-                <input className="input"
-                    // value=''
-                       name="entrance"
-                       type="text"
-                       id="full_name"
-                       autoComplete="off"
-                />
-            </div>
-
-            <div className="checkout-form__field grid-1">
-                <label>Этаж:</label>
-                <input className="input"
-                    // value=''
-                       name="floor"
-                       type="text"
-                       id="full_name"
-                       autoComplete="off"
-                />
-            </div>
-
-            <div className="checkout-form__field grid-1">
-                <label>Офис/Кв.:</label>
-                <input className="input"
-                    // value=''
-                       name="apartment"
-                       type="text"
-                       id="full_name"
-                       autoComplete="off"
-                />
-            </div>
-
-            <div className="checkout-form__field grid-4">
-
-                <h1>Способ оплаты:</h1>
-
-                <div>
-                    <input className="radio"
-                           value='cash'
-                           name="pay_method"
-                           type="radio"
-                           id="cash"
-                           defaultChecked
-                    />
-                    <label htmlFor='cash' className='radio__pay-label'>Наличными курьеру</label>
-                </div>
-
-                <div>
-                    <input className="radio"
-                           value='card'
-                           name="pay_method"
-                           type="radio"
-                           id="card"
-                    />
-                    <label htmlFor='card' className="radio__pay-label">
-                        Банковской картой курьеру при получении
-                    </label>
-                </div>
-            </div>
-        </Fragment>
-    )
-};
-
 
 const mapStateToProps = ({user, city, cart}) => {
     return {
@@ -319,6 +188,14 @@ const mapStateToProps = ({user, city, cart}) => {
     };
 };
 
-export default connect(mapStateToProps)(CheckoutOrderDetails);
+
+const mapDispatchToPros = (dispatch) => {
+    return {
+        remove_cart: bindActionCreators(removeCart, dispatch)
+    }
+};
+
+
+export default connect(mapStateToProps, mapDispatchToPros)(CheckoutOrderDetails);
 
 
