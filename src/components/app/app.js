@@ -15,17 +15,6 @@ class App extends Component {
     };
 
 
-    toggleAuthForm = () => {
-        const {isActiveAuthForm} = this.state;
-
-        if (isActiveAuthForm) {
-            document.body.style.overflowY = "auto";
-        } else {
-            document.body.style.overflowY = "hidden";
-        }
-        this.setState(({isActiveAuthForm}) => ({isActiveAuthForm: !isActiveAuthForm}))
-    };
-
     toggleMenu = () => {
         this.setState(({isActiveMenu}) => ({isActiveMenu: !isActiveMenu}))
     };
@@ -34,16 +23,15 @@ class App extends Component {
     render() {
         return (
             <div>
-                <Header toggleAuthForm={() => this.toggleAuthForm()}/>
+                <Header/>
 
                 <Switch>
                     <Route path='/auth/'
-                           render={() => <Auth
-                               toggleAuthForm={() => this.toggleAuthForm()}/>}
+                           component={Auth}
                            exact/>
 
                     <Route path='/checkout/'
-                           render={() => <CheckoutContainer/>}
+                           component={CheckoutContainer}
                            exact/>
 
                     <Route path='/'

@@ -11,6 +11,7 @@ class Header extends Component {
     logout = () => {
         const {set_default_user} = this.props;
         localStorage.removeItem('token');
+        sessionStorage.removeItem('promoCode');
         set_default_user()
     };
 

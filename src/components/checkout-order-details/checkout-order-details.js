@@ -3,6 +3,7 @@ import './checkout-order-details.scss';
 import siteConfig from "../../config";
 import {connect} from "react-redux";
 import maskPhone from "../../services/mask-phone";
+import OrderApiServices from "../../services/order-api-services";
 
 
 class CheckoutOrderDetails extends Component {
@@ -85,15 +86,23 @@ class CheckoutOrderDetails extends Component {
 
     createOrder = (e) => {
         e.preventDefault();
+
+        const {createOrder} = new OrderApiServices();
+        const {cart: {totalPrice, itemsList}} = this.props;
         const formData = new FormData(e.target);
         const orderDetails = {};
         formData.forEach((value, key) => {
             orderDetails[key] = value;
         });
+        orderDetails.totalPrice = totalPrice;
+        orderDetails.itemsList = itemsList;
         this.addPromoCodeToOrder(orderDetails);
         this.addCityToOrder(orderDetails);
+        createOrder(orderDetails)
+            .then((result) => {
+                console.log(result);
+            })
 
-        console.log(orderDetails);
     };
 
     render() {
@@ -302,10 +311,11 @@ const Delivery = ({deliveryInfo}) => {
 };
 
 
-const mapStateToProps = ({user, city}) => {
+const mapStateToProps = ({user, city, cart}) => {
     return {
         user,
-        city
+        city,
+        cart
     };
 };
 
