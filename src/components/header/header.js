@@ -89,7 +89,6 @@ class Header extends Component {
                         </div>
 
                         {this.showBonuses(user)}
-
                         {this.showAuthBlock(user.isAuthenticated)}
 
                         <div>

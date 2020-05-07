@@ -3,6 +3,7 @@ import {Link, Redirect} from "react-router-dom";
 import './search.scss';
 import SearchApiService from "../../services/search-api-service";
 import Product from "../product";
+import SearchElements from "./search-elements";
 
 
 // const SearchList = ({}) => {
@@ -30,71 +31,59 @@ class Search extends Component {
 
     handleChangeSearch = (e) => {
         {
-            this.getProducts(e.target.value)
+            this.setState({search: e.target.value});
+            this.getProducts(e.target.value);
         }
+    };
+
+     getProductsFromSearch = (e) => {
+         e.preventDefault();
+         this.getProducts(this.state.search);
+     };
+
+
+    closeSearchElements = () => {
+        this.setState({products: null})
     };
 
     getProducts = (query) => {
         const {searchProducts} = new SearchApiService();
-        if (query.length > 1) {
+        if (query && query.length > 1) {
             searchProducts(query)
                 .then((result) => {
                     if (result.error) {
-                        this.setState({searchError: result.error});
+                        this.setState({searchError: result.error, products: null});
                         return
                     }
-                    console.log(result);
-                    this.setState({products: result});
+                    this.setState({products: result, searchError: null});
                 })
         } else {
-            this.setState({products: null});
+            this.setState({products: null, searchError: null});
         }
     };
 
-    renderProducts = (productsList) => {
-        if (productsList) {
-            return (
-                <ul className='search__list'>
-                    {productsList.map(({id, name}) => (
-                        <Link to={`/product/${id}`}
-                              onClick={() => this.setState({products: null})}
-                        >
-                            <li>{name}</li>
-                        </Link>))}
-                </ul>
-            )
-        }
-    };
-
-
-    testRender = (query) => {
-        return (
-            <div>kkk</div>
-        )
-    };
 
     render() {
-
-        const {products, searchError} = this.state;
-        console.log(products);
+        const {products, searchError, search} = this.state;
         return (
             <div className='search'>
                 <form className='form'
-                      // TODO show all
-                      onSubmit={() => <Redirect to='/product/'/>}
-                >
-                <input placeholder='поиск'
-                       className='input'
-                       onChange={(e) => this.handleChangeSearch(e)}
-                />
-            </form>
-        {
-            this.renderProducts(products)
-        }
-    </div>
-    )
+                      onSubmit={(e) => this.getProductsFromSearch(e)}>
+                    <input placeholder='поиск'
+                           value={search}
+                           className='input'
+                           onChange={(e) => this.handleChangeSearch(e)}
+                    />
+                    {search && <SearchElements
+                        productsList={products}
+                        closeSearchElements={this.closeSearchElements}
+                        searchError={searchError}
+                    />}
+                </form>
+            </div>
+        )
     }
-    }
+}
 
 
-    export default Search;
+export default Search;
