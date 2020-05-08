@@ -44,6 +44,7 @@ class SearchElements extends Component {
             closeSearchElements,
             products_loaded
         } = this.props;
+
         products_loaded(productsList);
         closeSearchElements()
     };

@@ -7,6 +7,21 @@
     width: 100%;
   }
 
+  .close-icon {
+    font-size: large;
+    position: absolute;
+    margin-left: -1.5em;
+    transition: 0.5s;
+    line-height: 2em;
+    color: $grey-color;
+
+    &:hover {
+      cursor: pointer;
+      color: $base-color-light;
+      transform: rotate(-180deg);
+    }
+  }
+
   .input {
     padding: 0.7em;
     border-radius: 0.3em;

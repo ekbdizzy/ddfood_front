@@ -1,23 +1,7 @@
 import React, {Component} from "react";
-import {Link, Redirect} from "react-router-dom";
 import './search.scss';
 import SearchApiService from "../../services/search-api-service";
-import Product from "../product";
 import SearchElements from "./search-elements";
-
-
-// const SearchList = ({}) => {
-//     console.log(list);
-//     return (
-//         <ul className='search__list'>
-//             <div>fdsfds</div>
-//             {list.map(({id, name}) => (
-//                 <Link to={`/product/${id}`}>
-//                     <li>{name}</li>
-//                 </Link>))})
-//         </ul>
-//     )
-// };
 
 
 class Search extends Component {
@@ -36,14 +20,19 @@ class Search extends Component {
         }
     };
 
-     getProductsFromSearch = (e) => {
-         e.preventDefault();
-         this.getProducts(this.state.search);
-     };
+    getProductsFromSearch = (e) => {
+        e.preventDefault();
+        this.getProducts(this.state.search);
+    };
 
 
     closeSearchElements = () => {
         this.setState({products: null})
+    };
+
+
+    clearSearchText = () => {
+        this.setState({search: '',})
     };
 
     getProducts = (query) => {
@@ -74,6 +63,8 @@ class Search extends Component {
                            className='input'
                            onChange={(e) => this.handleChangeSearch(e)}
                     />
+                    {search && <span className='close-icon'
+                                     onClick={() => this.clearSearchText()}>✕</span>}
                     {search && <SearchElements
                         productsList={products}
                         closeSearchElements={this.closeSearchElements}
