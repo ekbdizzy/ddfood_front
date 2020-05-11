@@ -3,7 +3,7 @@ import './spinner.scss';
 
 const Spinner = () => {
     return (
-        <div>Loading...</div>
+        <div className='spinner'>Загрузка...</div>
     )
 };
 

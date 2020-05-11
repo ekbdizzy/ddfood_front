@@ -65,12 +65,26 @@
       }
 
     }
+  }
+
+  &__label-block {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 
 
   }
 
   &__label {
     @extend %label;
+
+    &-comment {
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+
   }
 
   &__input {

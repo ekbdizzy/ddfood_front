@@ -1,5 +1,6 @@
 import siteConfig from "../config";
 import header from "../components/header/header";
+import {mapUserData} from "./mappers";
 
 
 class AuthApiService {
@@ -41,7 +42,11 @@ class AuthApiService {
                 body: JSON.stringify(body)
             });
         return await result.json()
-    }
+    };
+
+
+
+
 }
 
 export default AuthApiService;
