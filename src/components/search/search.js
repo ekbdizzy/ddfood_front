@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import './search.scss';
 import SearchApiService from "../../services/search-api-service";
 import SearchElements from "./search-elements";
+import {Redirect} from "react-router";
 
 
 class Search extends Component {
@@ -11,6 +12,15 @@ class Search extends Component {
         products: null,
         searchError: null
     };
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        const {products} = this.state;
+        if (products !== prevState.products) {
+            this.setState((state) => {
+                return {products: products}
+            })
+        }
+    }
 
 
     handleChangeSearch = (e) => {
@@ -30,10 +40,16 @@ class Search extends Component {
         this.setState({products: null})
     };
 
+    setProductsInState = (productsList) => {
+        this.setState({products: productsList})
+    };
+
 
     clearSearchText = () => {
         this.setState({search: '',})
     };
+
+    
 
     getProducts = (query) => {
         const {searchProducts} = new SearchApiService();
@@ -69,6 +85,7 @@ class Search extends Component {
                         productsList={products}
                         closeSearchElements={this.closeSearchElements}
                         searchError={searchError}
+                        setProductsInState={this.setProductsInState}
                     />}
                 </form>
             </div>

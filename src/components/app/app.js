@@ -39,7 +39,6 @@ class App extends Component {
                            component={OrderCreated}
                            exact/>
 
-
                     <Route path='/'
                            component={MainPage}/>
 

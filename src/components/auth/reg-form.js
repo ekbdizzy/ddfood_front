@@ -7,7 +7,8 @@ import maskPhone from "../../services/mask-phone";
 class RegistrationForm extends Component {
 
     state = {
-        phone: '+7 '
+        phone: '+7 ',
+        error: null
     };
 
 
@@ -25,15 +26,22 @@ class RegistrationForm extends Component {
         formData.forEach((value, key) => {
             body[key] = value
         });
+
+
         createUser(body)
-            .then(() => {
-                obtainToken({email: body.email, password: body.password})
-                    .then(({token}) => {
-                        getUserData(token)
-                            .then((userData) => {
-                                set_user_data({...mapUserData(userData), token})
-                            })
-                    })
+            .then((result) => {
+                if (result.error) {
+                    this.setState({error: result.error})
+                } else {
+                    obtainToken({email: body.email, password: body.password})
+                        .then(({token}) => {
+                            console.log(token);
+                            getUserData(token)
+                                .then((userData) => {
+                                    set_user_data({...mapUserData(userData), token})
+                                })
+                        })
+                }
             }).catch((error) => {
             console.log(error)
         });
@@ -42,10 +50,9 @@ class RegistrationForm extends Component {
 
     render() {
         const {user} = this.props;
-        const {phone} = this.state;
+        const {phone, error} = this.state;
 
         if (user.isAuthenticated) {
-            alert('Registered');
             return <Redirect to='/'/>
         }
 
@@ -108,9 +115,8 @@ class RegistrationForm extends Component {
                                placeholder=''
                         />
                     </div>
-                    {/*<div className='auth__error'>*/}
-                    {/*    error*/}
-                    {/*</div>*/}
+
+                    {error && <div className='auth__error'>{error}</div>}
 
                     <button
                         className='auth__submit'

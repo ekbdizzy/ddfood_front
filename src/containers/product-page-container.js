@@ -34,7 +34,8 @@ class ProductPageContainer extends Component {
     componentDidUpdate(prevProps) {
         const {
             productId,
-            products_loaded
+            products_loaded,
+            products
         } = this.props;
 
 
@@ -46,6 +47,12 @@ class ProductPageContainer extends Component {
                     products_loaded(products);
                     this.setState({product: mapProductData(product)})
                 })
+        }
+
+        if (products !== prevProps.products) {
+            // products_loaded(products);
+            //TODO make load of products for search
+            console.log('You should make load of products for search')
         }
     };
 

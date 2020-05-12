@@ -28,6 +28,9 @@ class AuthApiService {
                     'Content-Type': 'application/json;charset=utf-8'
                 }
             });
+        if (result.ok) {
+            return await result.json()
+        }
         return await result.json()
     };
 
@@ -43,8 +46,6 @@ class AuthApiService {
             });
         return await result.json()
     };
-
-
 
 
 }

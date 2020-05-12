@@ -4,8 +4,13 @@ import {Link} from "react-router-dom";
 import {bindActionCreators} from "redux";
 import {productsLoaded} from "../../actions/product_actions";
 import {connect} from 'react-redux';
+import {Redirect} from "react-router";
 
 class SearchElements extends Component {
+
+    state = {
+        redirect: false
+    };
 
     componentDidMount() {
         document.addEventListener('click',
@@ -16,6 +21,7 @@ class SearchElements extends Component {
         document.removeEventListener('click',
             this.handleCLickOutside, true);
     }
+
 
     handleCLickOutside = (e) => {
         const domNode = ReactDOM.findDOMNode(this);
@@ -38,20 +44,32 @@ class SearchElements extends Component {
         )
     };
 
-    redirectToAllProducts = () => {
+    redirectToAllProducts = (e) => {
+        e.preventDefault();
         const {
             productsList,
             closeSearchElements,
-            products_loaded
+            products_loaded,
+            setProductsInState
         } = this.props;
 
         products_loaded(productsList);
-        closeSearchElements()
+        setProductsInState(productsList);
+        closeSearchElements();
+
+        // this.setState((state) => {
+        //     return {redirect: true}
+        // })
+
+
     };
 
 
     render() {
         const {productsList, searchError} = this.props;
+
+
+
         if (searchError) {
             return (
                 <ul className='search__list'>
@@ -64,13 +82,18 @@ class SearchElements extends Component {
                 <ul className='search__list'>
                     {this.renderElements()}
                     <li id='show-all-products'
-                        onClick={() => {
-                            this.redirectToAllProducts()
+                        onClick={(e) => {
+                            this.redirectToAllProducts(e)
                         }}> Показать все варианты
                     </li>
                 </ul>
             )
         }
+
+        if (this.state.redirect) {
+            return <Redirect to='/'/>
+        }
+
         return ''
     }
 }
