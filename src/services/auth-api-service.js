@@ -47,7 +47,27 @@ class AuthApiService {
         return await result.json()
     };
 
+    sendLinkWithPasswordReset = async (body) => {
+        const result = await fetch(
+            `${siteConfig.urls.baseUrl}${siteConfig.urls.resetPassword}`,
+            {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json;charset=utf-8'},
+                body: JSON.stringify(body)
+            });
+        return await result.json()
+    };
 
+    createNewPassword = async (body) => {
+        const result = await fetch(
+            `${siteConfig.urls.baseUrl}${siteConfig.urls.resetPassword}`,
+            {
+                method: 'PUT',
+                headers: {'Content-Type': 'application/json;charset=utf-8'},
+                body: JSON.stringify(body)
+            });
+        return await result.json()
+    };
 }
 
 export default AuthApiService;
