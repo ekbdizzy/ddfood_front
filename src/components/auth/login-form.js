@@ -3,6 +3,7 @@ import AuthApiService from "../../services/auth-api-service";
 import {mapUserData} from "../../services/mappers";
 import {Redirect} from "react-router";
 import maskPhone from "../../services/mask-phone";
+import {Link} from "react-router-dom";
 
 class LoginForm extends Component {
 
@@ -93,8 +94,8 @@ class LoginForm extends Component {
                                placeholder=''
                         />
                     </div>
-                    {error ? <div className='auth__error'>{error}</div> : ''}
-                    <a href='/' className='link-white'> Воccтановить пароль</a>
+                    {error && <div className='auth__error'>{error}</div>}
+                    <Link to='/reset-password/' className='link-white'> Воccтановить пароль</Link>
                     <button
                         className='auth__submit'
                         type='submit'>

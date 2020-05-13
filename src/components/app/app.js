@@ -7,6 +7,7 @@ import Footer from "../footer";
 import CheckoutContainer from "../../containers/checkout-container";
 import Auth from "../auth";
 import OrderCreated from "../order-created";
+import ResetPassword from "../reset-password";
 
 
 class App extends Component {
@@ -38,6 +39,11 @@ class App extends Component {
                     <Route path='/order-created/'
                            component={OrderCreated}
                            exact/>
+
+                    <Route path='/reset-password/'
+                           component={ResetPassword}
+                           exact/>
+
 
                     <Route path='/'
                            component={MainPage}/>

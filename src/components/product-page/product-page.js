@@ -5,11 +5,6 @@ import {connect} from "react-redux";
 
 class ProductPage extends Component {
 
-    componentDidUpdate(prevProps, prevState, snapshot) {
-
-    }
-
-
     setMeasure = (measure) => {
         switch (measure) {
             case 'гр.':
@@ -53,84 +48,79 @@ class ProductPage extends Component {
 
         return (
             <div key={id}
-                 className='product'>
-                <div className='product__left-side'>
-                    <img src={baseImage ? baseImage : imageBlank}
-                         className='product__image'
-                         alt={name}
-                    />
-                    <div className='product__price'>{`Цена: ${price} руб.`}</div>
+                 className='product-page'>
+                <img src={baseImage ? baseImage : imageBlank}
+                     className='product-page__image'
+                     alt={name}/>
+                <div className='product-page__title'>{name}</div>
+                <div className='product-page__text'>{`Состав: ${contain}`}</div>
 
+                <div className='product-page__bottom-block'>
 
-                    {item ? (
-                        <div className='added-block'>
-                            <button className='added-block__button'
-                                    onClick={removeFromCart}>–
-                            </button>
-                            <p className='added-block__quantity'>
-                                {item.quantity}{'\u00A0'}шт.
-                            </p>
-                            <button className='added-block__button'
-                                    onClick={addToCart}>+
-                            </button>
-                        </div>
-                    ) : (
-                        <button
-                            onClick={addToCart}
-                            className='add-to-cart-btn'>
-                            Добавить
-                        </button>
-                    )}
-
-                </div>
-
-                <div className="product__right-side">
-                    <div className='product__title'>{name}</div>
-                    <div className='product__text'>{`Состав: ${contain}`}</div>
-                    <div className='product__text-bold'>В 100 граммах:</div>
-                    <div className='product_nutritions'>
-
-                        {this.checkNutritions(protein,
-                            <span className='product__tag'>
+                    <div className="product-page__left-side">
+                        <div className='product-page__text-bold'>В 100 граммах:</div>
+                        <div className='product-page_nutritions'>
+                            {this.checkNutritions(protein,
+                                <span className='product-page__tag'>
                                 {`Белки:\u00A0${protein}\u00A0гр.`}
-                            </span>
-                        )}
+                            </span>)}
 
-                        {this.checkNutritions(fat,
-                            <span className='product__tag'>
+                            {this.checkNutritions(fat,
+                                <span className='product-page__tag'>
                                 {`Жиры:\u00A0${fat}\u00A0гр.`}
-                            </span>
-                        )}
+                        </span>)}
 
-                        {this.checkNutritions(carbs,
-                            <span className='product__tag'>
+                            {this.checkNutritions(carbs,
+                                <span className='product-page__tag'>
                                 {`Углеводы:\u00A0${carbs}\u00A0гр.`}
-                            </span>
-                        )}
+                            </span>)}
 
-                        {this.checkNutritions(fibers,
-                            <span className='product__tag'>
+                            {this.checkNutritions(fibers,
+                                <span className='product-page__tag'>
                                 {`Пищевые\u00A0волокна:\u00A0${fibers}\u00A0гр.`}
-                            </span>
-                        )}
+                            </span>)}
 
-                        {this.checkNutritions(energyValueCalories,
-                            <span className='product__tag product__text-bold'>
+                            {this.checkNutritions(energyValueCalories,
+                                <span className='product-page__tag product-page__text-bold'>
                                 {`${energyValueCalories}\u00A0ккал.`}
-                            </span>
-                        )}
+                            </span>)}
+                        </div>
+
+                        {bestBefore && <div className='product-page__text'>{`Срок годности: ${bestBefore}`}</div>}
+
+                        {tradeMark && <div className='product-page__text product-page__text-trademark'>
+                            {`Торговая марка: ${tradeMark}`}
+                        </div>}
+
+                        <div className='product-page__mass'>
+                            {`${this.setMeasure(measure)} ${mass} ${measure}`}
+                        </div>
                     </div>
 
-                    {bestBefore ?
-                        <div className='product__text'>{`Срок годности: ${bestBefore}`}</div>
-                        : ""}
+                    <div className="product-page__right-side">
+                        <div className='product-page__price'>{`Цена: ${price} руб.`}</div>
 
-                    {tradeMark ?
-                        <div className='product__text'>{`Торговая марка: ${tradeMark}`}</div>
-                        : ""}
-
-                    <div className='product_mass'>
-                        {`${this.setMeasure(measure)} ${mass} ${measure}`}
+                        {item
+                            ? (
+                                <div className='added-block'>
+                                    <button className='added-block__button'
+                                            onClick={removeFromCart}>–
+                                    </button>
+                                    <p className='added-block__quantity'>
+                                        {item.quantity}{'\u00A0'}шт.
+                                    </p>
+                                    <button className='added-block__button'
+                                            onClick={addToCart}>+
+                                    </button>
+                                </div>
+                            )
+                            : (
+                                <button
+                                    onClick={addToCart}
+                                    className='add-to-cart-btn'>
+                                    Добавить
+                                </button>
+                            )}
                     </div>
                 </div>
             </div>

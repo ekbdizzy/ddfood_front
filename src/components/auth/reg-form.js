@@ -27,24 +27,27 @@ class RegistrationForm extends Component {
             body[key] = value
         });
 
-
-        createUser(body)
-            .then((result) => {
-                if (result.error) {
-                    this.setState({error: result.error})
-                } else {
-                    obtainToken({email: body.email, password: body.password})
-                        .then(({token}) => {
-                            console.log(token);
-                            getUserData(token)
-                                .then((userData) => {
-                                    set_user_data({...mapUserData(userData), token})
-                                })
-                        })
-                }
-            }).catch((error) => {
-            console.log(error)
-        });
+        if (body['password'] === body['retry-password']) {
+            createUser(body)
+                .then((result) => {
+                    if (result.error) {
+                        this.setState({error: result.error})
+                    } else {
+                        obtainToken({email: body.email, password: body.password})
+                            .then(({token}) => {
+                                console.log(token);
+                                getUserData(token)
+                                    .then((userData) => {
+                                        set_user_data({...mapUserData(userData), token})
+                                    })
+                            })
+                    }
+                }).catch((error) => {
+                console.log(error)
+            });
+        } else {
+            this.setState({error: 'Пароли не совпадают'})
+        }
     };
 
 
@@ -80,6 +83,7 @@ class RegistrationForm extends Component {
                                name='email'
                                autoComplete="off"
                                placeholder='mail@mail.ru'
+                               required
                         />
                     </div>
 
@@ -103,6 +107,7 @@ class RegistrationForm extends Component {
                                name='password'
                                autoComplete="off"
                                placeholder=''
+                               required
                         />
                     </div>
 
@@ -113,6 +118,7 @@ class RegistrationForm extends Component {
                                name='retry-password'
                                autoComplete="off"
                                placeholder=''
+                               required
                         />
                     </div>
 

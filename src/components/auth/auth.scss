@@ -11,20 +11,6 @@
   }
 }
 
-#close_auth_form {
-  position: absolute;
-  color: white;
-  top: 0;
-  right: 0;
-  padding: 2em;
-  font-size: xx-large;
-  transition: 0.3s;
-
-  &:hover {
-    cursor: pointer;
-    transform: translateY(-0.05em) rotate(90deg);
-  }
-}
 
 .auth {
   padding: 5% 0;
@@ -36,9 +22,9 @@
   width: 100%;
 
   &__form {
-  width: 70%;
-  max-width: 400px;
-}
+    width: 70%;
+    max-width: 400px;
+  }
 
   &__title-block {
     @extend %title-center;
@@ -71,8 +57,6 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-
-
   }
 
   &__label {
