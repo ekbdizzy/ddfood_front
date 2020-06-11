@@ -5,14 +5,28 @@ import {connect} from "react-redux";
 import {Link} from "react-router-dom";
 import {bindActionCreators} from "redux";
 import {setDefaultUser} from "../../actions/user_actions";
+import BurgerMenu from "../burger-menu";
 
 class Header extends Component {
+
+    state = {
+        menuIsActive: false
+    };
+
+    toggleMenu = () => {
+        this.setState(({menuIsActive}) => {
+            return {menuIsActive: !menuIsActive}
+        })
+    };
+
 
     logout = () => {
         const {set_default_user} = this.props;
         localStorage.removeItem('token');
         sessionStorage.removeItem('promoCode');
-        set_default_user()
+        set_default_user();
+        this.toggleMenu();
+
     };
 
     showBonuses = (user) => {
@@ -21,7 +35,9 @@ class Header extends Component {
             return (
                 <div>
                     <Link to={'/bonus'}
-                          className="nav-link">
+                          className="nav-link"
+                          onClick={() => this.toggleMenu()}
+                    >
                         {`Бонусы (${bonuses})`}
                     </Link>
                 </div>
@@ -30,7 +46,8 @@ class Header extends Component {
             return (
                 <div>
                     <Link to={'/bonus'}
-                          className="nav-link">
+                          className="nav-link"
+                          onClick={() => this.toggleMenu()}>
                         Бонусная программа
                     </Link>
                 </div>
@@ -44,7 +61,9 @@ class Header extends Component {
                 <>
                     <div>
                         <Link to={'/auth'}
-                              className='nav-link'>
+                              className='nav-link'
+                              onClick={() => this.toggleMenu()}
+                        >
                             Личный кабинет
                         </Link>
                     </div>
@@ -60,7 +79,8 @@ class Header extends Component {
             return (
                 <div>
                     <Link to={'/auth'}
-                          className='nav-link'>
+                          className='nav-link'
+                          onClick={() => this.toggleMenu()}>
                         Вход/Регистрация
                     </Link>
                 </div>
@@ -70,20 +90,32 @@ class Header extends Component {
 
     render() {
         const {city, user} = this.props;
+        const {menuIsActive} = this.state;
+
+
         return (
             <header className='header-wrapper'>
-                <div className='wrapper'>
-                    <nav className='top-nav'>
-                        <Link to={'/'}>
-                            <img src={logoIcon}
-                                 className='logo'
-                                 alt='daily diet'
-                            />
-                        </Link>
 
+                <BurgerMenu
+                    menuIsActive={menuIsActive}
+                    toggleMenu={this.toggleMenu}
+                />
+
+                <div className='menu-wrapper'>
+
+                    <Link to={'/'} className='logo__link'>
+                        <img src={logoIcon}
+                             className='logo__img'
+                             alt='daily diet'
+                        />
+                    </Link>
+
+                    <nav className={menuIsActive ? 'top-nav top-nav__active' : 'top-nav'}>
                         <div>
-                            <Link to={'/dostavka'}
-                                  className="nav-link">
+                            <Link to={'/delivery'}
+                                  className="nav-link"
+                                  onClick={() => this.toggleMenu()}
+                            >
                                 Доставка и оплата
                             </Link>
                         </div>
@@ -101,6 +133,8 @@ class Header extends Component {
                             Работаем {city.workingTime}<br/>
                             Тел.: {city.phone}
                         </div>
+
+
                     </nav>
                 </div>
             </header>
@@ -108,18 +142,25 @@ class Header extends Component {
     }
 }
 
-const mapStateToProps = ({city, user}) => {
-    return {
-        city,
-        user
-    }
-};
+const
+    mapStateToProps = ({city, user}) => {
+        return {
+            city,
+            user
+        }
+    };
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        set_default_user: bindActionCreators(setDefaultUser, dispatch)
-    }
-};
+const
+    mapDispatchToProps = (dispatch) => {
+        return {
+            set_default_user: bindActionCreators(setDefaultUser, dispatch)
+        }
+    };
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(Header);
+export default connect(mapStateToProps, mapDispatchToProps)
+
+(
+    Header
+)
+;

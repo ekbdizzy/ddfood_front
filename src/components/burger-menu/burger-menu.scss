@@ -1,0 +1,83 @@
+@import "../app/app";
+
+//.burger-menu {
+//  display: none;
+//
+//  @media screen and (max-width: $smDesktopWidth) {
+//    display: block;
+//    position: absolute;
+//    top: 2em;
+//    right: 2em;
+//  }
+//
+//
+//}
+
+
+.burger-menu {
+
+
+
+  @media screen and (min-width: $smDesktopWidth) {
+    display: none;
+  }
+
+  &__active {
+
+
+    .burger-menu__lines {
+      background-color: transparent;
+    }
+
+    .burger-menu__lines::before {
+      top: 0;
+      transform: rotate(45deg);
+    }
+
+    .burger-menu__lines::after {
+      top: 0;
+      transform: rotate(-45deg);
+    }
+  }
+
+  &__button {
+    position: absolute;
+    top: 1em;
+    right: 1em;
+    z-index: 30;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    opacity: 0.9;
+
+    &:hover {
+      opacity: 0.9;
+      cursor: pointer;
+    }
+  }
+
+  &__lines,
+  &__lines::after,
+  &__lines::before {
+    position: absolute;
+    width: 30px;
+    height: 2px;
+    background-color: white;
+  }
+
+  &__lines {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  &__lines::before {
+    content: '';
+    top: -8px;
+  }
+
+  &__lines::after {
+    content: '';
+    top: 8px;
+  }
+}
