@@ -51,6 +51,33 @@
   @media screen and (max-width: $tableWidth) {
     display: flex;
   }
+}
 
+.lock {
+  position: fixed;
+  height: 100vh;
+  width: 100vh;
+  top: 0;
+  left: 0;
+  background-color: $grey-color;
+  opacity: 0.8;
+  z-index: 500;
+}
+
+.categories-list {
+  position: fixed;
+  overflow-y: auto;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  width: 60vw;
+  height: 100vh;
+  background-color: white;
+  transition: 0.2s;
+
+  &__hidden {
+    left: -100vw;
+  }
 
 }
+

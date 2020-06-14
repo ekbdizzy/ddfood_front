@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import React, {Component} from "react";
+import {Link} from "react-router-dom";
 import './categories-list.scss';
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 import Spinner from "../spinner";
 import ErrorIndicator from "../error-indicator";
 
@@ -40,14 +40,13 @@ class CategoriesList extends Component {
     };
 }
 
-const mapStateToProps =
-    ({categories: {categoriesList, error, loading}}) => {
-
-        return {
-            categories: categoriesList,
-            error,
-            loading
-        }
-    };
+const mapStateToProps = (
+    {categories: {categoriesList, error, loading}}) => {
+    return {
+        categories: categoriesList,
+        error,
+        loading
+    }
+};
 
 export default connect(mapStateToProps)(CategoriesList);

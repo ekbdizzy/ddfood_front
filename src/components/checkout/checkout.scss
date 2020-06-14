@@ -1,6 +1,5 @@
 @import '../app/app';
 
-
 .checkout {
   display: flex;
   flex-direction: row;
@@ -8,13 +7,15 @@
   align-content: space-between;
   width: 100%;
 
+  @media screen and (max-width: $smDesktopWidth) {
+    flex-flow: column wrap;
+  }
 
   &__right-side {
     display: flex;
     flex-direction: column;
     width: 100%;
     padding: 1em;
-
   }
 
 
