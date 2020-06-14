@@ -1,2 +1,9 @@
 @import '../app/app';
 
+
+.main-page {
+  padding-bottom: 1em;
+  @media screen and (max-width: $smDesktopWidth) {
+    padding-bottom: 6em;
+  }
+}

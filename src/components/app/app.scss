@@ -19,12 +19,20 @@ body {
   height: 100vh;
   flex-direction: column;
   overflow: auto;
+
+  transition: 1s;
+
+  @media screen and (max-width: $smDesktopWidth) {
+    display: none;
+    //transform: translateX(-300px);
+  }
+
 }
 
 .main {
   flex: 3;
   flex-wrap: wrap;
-}
+  }
 
 
 .right-sidebar {
@@ -34,6 +42,11 @@ body {
   position: sticky;
   height: 100vh;
   overflow: auto;
+
+
+  @media screen and (max-width: $tableWidth) {
+    display: none;
+  }
 }
 
 .link-white {

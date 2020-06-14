@@ -8,12 +8,15 @@ import ProductsListContainer from "../../containers/products-list-container";
 import CartItemsListContainer from "../../containers/cart-items-list-container";
 import ProductPageContainer from "../../containers/product-page-container";
 import Search from "../search";
+import MobileBottomMenu from "../mobile-bottom-menu";
 
 const MainPage = () => {
 
     return (
         <section className='main-page'>
             <div className='wrapper'>
+
+                <MobileBottomMenu/>
 
                 <div className='left-sidebar'>
                     <CategoriesContainer/>

@@ -1,0 +1,56 @@
+@import "../app/app";
+
+
+.bottom-menu {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  flex-flow: row nowrap;
+  width: 100%;
+  z-index: 1000;
+  justify-content: space-evenly;
+  padding: 0.5em;
+  background-color: white;
+  box-shadow: 0 5px 10px 0 black;
+}
+
+.icon-title {
+  margin: auto;
+}
+
+.categories-icon, .cart-icon {
+  display: none;
+  width: 100%;
+  padding: 1em;
+  margin: 0.5em;
+  border-radius: 5px;
+  font-family: Bold, sans-serif;
+  font-size: 1.2em;
+  transition: 0.2s;
+
+  &:hover {
+    cursor: pointer;
+    opacity: 0.9;
+  }
+}
+
+.categories-icon {
+  background-color: #ffb422;
+
+  @media screen and (max-width: $smDesktopWidth) {
+    display: flex;
+  }
+
+}
+
+.cart-icon {
+  background-color: #B9152E;
+  color: white;
+
+  @media screen and (max-width: $tableWidth) {
+    display: flex;
+  }
+
+
+}
