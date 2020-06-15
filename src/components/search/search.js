@@ -16,9 +16,7 @@ class Search extends Component {
     componentDidUpdate(prevProps, prevState, snapshot) {
         const {products} = this.state;
         if (products !== prevState.products) {
-            this.setState((state) => {
-                return {products: products}
-            })
+            this.setState({products: products})
         }
     }
 
@@ -49,7 +47,6 @@ class Search extends Component {
         this.setState({search: '',})
     };
 
-    
 
     getProducts = (query) => {
         const {searchProducts} = new SearchApiService();

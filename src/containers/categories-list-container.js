@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import CategoriesList from "../components/categories-list";
-import { connect } from "react-redux";
+import {connect} from "react-redux";
 import siteConfig from '../config';
 
 import ApiService from "../services/api-services";
@@ -10,14 +10,12 @@ import {
     categoriesLoaded,
     // categoriesLoadError
 } from "../actions/actions";
-import { bindActionCreators } from "redux";
+import {bindActionCreators} from "redux";
 
 class CategoriesContainer extends Component {
 
     componentDidMount() {
-
         const {getData} = new ApiService();
-
         const {
             load_categories,
             request_categories
@@ -28,6 +26,7 @@ class CategoriesContainer extends Component {
                 load_categories(categories)
             })
     }
+
     render() {
 
         return (

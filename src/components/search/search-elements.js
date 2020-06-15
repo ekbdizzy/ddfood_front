@@ -26,7 +26,6 @@ class SearchElements extends Component {
     handleCLickOutside = (e) => {
         const domNode = ReactDOM.findDOMNode(this);
         const {closeSearchElements} = this.props;
-
         if (!domNode || !domNode.contains(e.target)) {
             closeSearchElements();
         }
