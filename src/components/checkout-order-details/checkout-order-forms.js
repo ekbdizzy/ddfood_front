@@ -27,7 +27,7 @@ const UserDataForm = (
             <input className="input"
                    value={phone}
                    name="phone"
-                   type="phone"
+                   type="tel"
                    id="phone"
                    autoComplete="off"
                    onChange={(e) => handleChangePhone(e)}
@@ -86,9 +86,8 @@ const Delivery = ({deliveryInfo}) => {
             <div className="checkout-form__field grid-1">
                 <label>Подъезд:</label>
                 <input className="input"
-                    // value=''
                        name="entrance"
-                       type="text"
+                       type="tel"
                        id="full_name"
                        autoComplete="off"
                 />
@@ -98,7 +97,7 @@ const Delivery = ({deliveryInfo}) => {
                 <label>Этаж:</label>
                 <input className="input"
                        name="floor"
-                       type="text"
+                       type="tel"
                        id="full_name"
                        autoComplete="off"
                 />
@@ -108,7 +107,7 @@ const Delivery = ({deliveryInfo}) => {
                 <label>Офис/Кв.:</label>
                 <input className="input"
                        name="apartment"
-                       type="text"
+                       type="tel"
                        id="full_name"
                        autoComplete="off"
                 />

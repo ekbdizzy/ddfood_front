@@ -144,7 +144,7 @@ const LoginByPhone = ({toggleLoginByEmail, phoneHandler, phone}) => {
                    value={phone}
                    name='phone'
                    id='reg-email'
-                   type='text'
+                   type='tel'
                    autoComplete='off'
                    onChange={(e) => phoneHandler(e)}
             />

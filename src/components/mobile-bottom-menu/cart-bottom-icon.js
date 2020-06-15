@@ -6,15 +6,23 @@ class CartBottomIcon extends Component {
 
     render() {
         const {totalQuantity, totalPrice} = this.props;
+        if (totalQuantity) {
+            return (
+                <Link to='/checkout/'
+                      className='cart-icon'>
+                    <div className='icon-title'>
+                        {totalQuantity} шт., {totalPrice} руб.
+                    </div>
+                </Link>
+            )
+        }
+
         return (
-            <Link to='/checkout/'
-                  className='cart-icon'>
+            <div className='cart-icon'>
                 <div className='icon-title'>
-                    {totalQuantity ?
-                        `${totalQuantity} шт., ${totalPrice} руб.`
-                        : 'Корзина пуста'}
+                    Корзина пуста
                 </div>
-            </Link>
+            </div>
         )
     }
 }
