@@ -31,6 +31,7 @@ class AppContainer extends Component {
         // request city
         city_requested();
         const sessionCityId = sessionStorage.getItem('city_id');
+
         if (sessionCityId !== null) {
             getCity(sessionCityId)
                 .then((cityData) => {
@@ -41,6 +42,7 @@ class AppContainer extends Component {
                 .then((result) => {
                     getClientCity(result.ip)
                         .then((city_id) => {
+                            console.log('iso', city_id.location.data.region_iso_code);
                             if (city_id.location !== null) {
                                 getCity(city_id.location.data.region_iso_code)
                                     .then((cityData) => {
@@ -48,6 +50,7 @@ class AppContainer extends Component {
                                         sessionStorage.setItem('city_id', cityData.city_id)
                                     });
                             } else {
+                                console.log('here!');
                                 getCity(siteConfig.defaults.cityId)
                                     .then((cityData) => {
                                         city_loaded(cityData);

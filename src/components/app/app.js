@@ -3,7 +3,7 @@ import {Route, Switch} from 'react-router-dom';
 import './app.scss';
 import Header from "../header";
 import MainPage from "../main-page";
-import Footer from "../footer";
+// import Footer from "../footer";
 import CheckoutContainer from "../../containers/checkout-container";
 import Auth from "../auth";
 import OrderCreated from "../order-created";
@@ -27,7 +27,6 @@ class App extends Component {
         return (
             <div>
                 <Header/>
-
                 <Switch>
                     <Route path='/auth/'
                            component={Auth}
@@ -48,11 +47,8 @@ class App extends Component {
                     <Route path='/set-new-password/'
                            component={SetNewPassword}
                     />
-
-
                     <Route path='/'
                            component={MainPage}/>
-
                 </Switch>
 
                 {/*<Footer/>*/}

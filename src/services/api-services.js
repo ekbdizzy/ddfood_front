@@ -44,6 +44,8 @@ export default class ApiService {
 
     getCity = async (city_id) => {
         const result = await this.getData(`/city/${city_id}`);
+        await console.log(result);
+
         return mapCityData(result);
     };
 
